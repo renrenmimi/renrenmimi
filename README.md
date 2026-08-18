@@ -34,7 +34,7 @@ Groq Whisper to Web Speech to raw loudness, so it still works with the network o
 
 <sub>`React` `TypeScript` `Groq` `Vitest` `Playwright` — [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)</sub>
 
-**[GreenLane](https://greenlane-beryl.vercel.app)** · immigration backlog tracker
+**[GreenLane](https://greenlane-beryl.vercel.app)** · immigration timeline tracker
 
 Ten years of visa bulletin history, wait-time estimates, and email alerts when a category moves.
 The data comes from 130 US visa bulletins and 424 Canadian Express Entry draws, refreshed by a
