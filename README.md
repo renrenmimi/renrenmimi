@@ -8,9 +8,8 @@ I build web apps end to end, and I have a habit of turning whatever I just learn
 something you can click.
 
 That habit turned into a set of interactive course sites. When I could not find a good
-explanation of how an AI agent actually works, I built one that shows the `messages` array
-growing in real time. Same for data structures, algorithms, Redis, TypeScript, and APIs —
-if I had to squint at it, I made it visible.
+explanation of how an AI agent works, I built one that shows the `messages` array
+growing in real time. Same for data structures, algorithms, Redis, TypeScript, and APIs.
 
 **Open to frontend / full-stack roles — new grad through mid-level — in the SF Bay Area or Irvine, CA.**
 
@@ -20,44 +19,43 @@ if I had to squint at it, I made it visible.
 
 **[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
 
-Two people can co-manage one pet profile, which is where all the interesting bugs live. Account
-deletion writes a TTL tombstone so a second open tab can't resurrect the profile; counters carry a
-`counted` flag so they can't be decremented below zero; invite codes are re-validated inside the
-transaction, so two people racing on the same code can't both win.
+Two people can co-manage one pet profile, which is where most of the difficulty is. Account
+deletion writes a TTL tombstone, so a second open tab cannot bring the profile back. Counters
+carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
+transaction, so two people redeeming the same code cannot both succeed.
 
 <sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 242 commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
-Acoustic and semantic signals fused into one score every two seconds. The core is a hand-written
-typed state machine whose reducer never calls `Date.now()` — every transition reads the timestamp
-off a `TICK` event instead. That one rule is why the demo can be replayed from a script and why
-100+ transition tests are deterministic. Degrades Groq Whisper → Web Speech → raw loudness, so it
-still does something useful with the network off.
+Acoustic and semantic signals combined into one score every two seconds. The reducer never calls
+`Date.now()`; every transition reads the timestamp off a `TICK` event instead, which is what lets
+the demo replay from a script and keeps the 100+ transition tests deterministic. Falls back from
+Groq Whisper to Web Speech to raw loudness, so it still works with the network off.
 
 <sub>`React` `TypeScript` `Groq` `Vitest` `Playwright` — [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)</sub>
 
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration backlog tracker
 
 Ten years of visa bulletin history, wait-time estimates, and email alerts when a category moves.
-The data is genuinely scraped, not seeded: 130 US visa bulletins and 424 Canadian Express Entry
-draws, refreshed by a scheduled job every morning.
+The data comes from 130 US visa bulletins and 424 Canadian Express Entry draws, refreshed by a
+scheduled job every morning.
 
 <sub>`Next.js 15` `SSR` `Python` `GitHub Actions` — [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)</sub>
 
 **[KOVA Flooring](https://www.kovaflooring.com)** · brand site and dealer portal, shipped for a client
 
-Two halves behind one deploy. The public brand site is statically exported, so there is no server to
+The public brand site is statically exported, so there is no server to
 run and Firebase never reaches the public bundle. Behind a login sits a dealer portal where each
 dealer sees pricing for their own tier next to live inventory, plus an admin console for editing
 price per product per tier and importing stock by CSV.
 
-<sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare` — [live](https://www.kovaflooring.com) · source private, client work</sub>
+<sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare` — [live](https://www.kovaflooring.com)</sub>
 
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
 Attach a reward to each task; clear them all and the app throws confetti. It builds as a plain
-Swift package — no `.xcodeproj`, SwiftUI and SwiftData only. It ships two hidden flags:
+Swift package, using SwiftUI and SwiftData. It ships two hidden flags:
 `--snapshot` renders every screen offscreen to PNG without asking for screen-recording permission,
 and `--selftest` asserts the things screenshots can't prove, like drag-and-drop placement and
 schema backfill.
@@ -73,21 +71,20 @@ Every concept gets an animation. All static and bilingual, with progress kept in
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | an agent is an array and a loop — watch `messages` grow, frame by frame |
 | [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then animation, then Java/Python/JS side by side |
 | [**AlgoAlgo**](https://algo-algo.vercel.app) | 13 chapters of algorithms: decision trees, DP tables and binary-search intervals replayed step by step |
-| [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript where every compiler error quoted is real `tsc` output, not written from memory |
-| [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, with exercises that hit real public APIs |
+| [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with compiler errors quoted from actual `tsc` output |
+| [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, with exercises that call live public APIs |
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis in seven stops and forty minutes, ending in 26 interview questions |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
-<sub>AgentLab's responses are all recorded in `lib/scenario.ts` — no API key, no spend. Its
-fill-in-the-blank questions give every wrong option its own correction, rather than a red X.</sub>
+<sub>AgentLab's responses are recorded in `lib/scenario.ts`, so it runs without an API key. Each
+wrong answer in its exercises comes with an explanation of why it is wrong.</sub>
 
 ### Things I made for fun
 
-**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a platformer starring the dog you
-see up there. Variable-height jumps, 100 ms of coyote time, input buffering, and a fixed-step
-physics loop decoupled from rendering. Before release a Node script walked the level to prove you
-can't clip through a wall at full speed, that every two-tile gap is jumpable, and that every enemy
-is actually standing on a platform.
+**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a platformer whose player character
+is the dog in my avatar. Variable-height jumps, 100 ms of coyote time, input buffering, and a
+fixed-step physics loop decoupled from rendering. A Node script walks the level before release and
+checks collision at full speed, the jump distances, and that each enemy has a platform under it.
 
 Also: a [Dota-flavoured snake](https://renrenmimi.github.io/dota-snake/) that calls your
 killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you steer by hovering,
@@ -103,5 +100,5 @@ cognitive drills. Each is a single HTML file — open it in a browser.
 [Portfolio](https://renrenmimi.github.io/) · [LinkedIn](https://www.linkedin.com/in/fengweiren) · [Email](mailto:feng.weir@northeastern.edu)
 
 <sub>Six years as a data analyst before an M.S. in Information Systems. I still build with one eye
-on what the numbers say afterwards. GitHub's language bar reads as almost entirely TypeScript —
-worth adding that the Swift is a real native app, and the Python is three working scrapers.</sub>
+on what the numbers say afterwards. GitHub's language bar reads as almost
+entirely TypeScript; the Swift is a macOS app and the Python is the scrapers behind GreenLane.</sub>
