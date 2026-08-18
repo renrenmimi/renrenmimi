@@ -18,6 +18,15 @@ if I had to squint at it, I made it visible.
 
 ### Things I've shipped
 
+**[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
+
+Two people can co-manage one pet profile, which is where all the interesting bugs live. Account
+deletion writes a TTL tombstone so a second open tab can't resurrect the profile; counters carry a
+`counted` flag so they can't be decremented below zero; invite codes are re-validated inside the
+transaction, so two people racing on the same code can't both win.
+
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 242 commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
+
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
 Acoustic and semantic signals fused into one score every two seconds. The core is a hand-written
@@ -28,15 +37,6 @@ still does something useful with the network off.
 
 <sub>`React` `TypeScript` `Groq` `Vitest` `Playwright` — [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)</sub>
 
-**[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
-
-Two people can co-manage one pet profile, which is where all the interesting bugs live. Account
-deletion writes a TTL tombstone so a second open tab can't resurrect the profile; counters carry a
-`counted` flag so they can't be decremented below zero; invite codes are re-validated inside the
-transaction, so two people racing on the same code can't both win.
-
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 242 commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
-
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration backlog tracker
 
 Ten years of visa bulletin history, wait-time estimates, and email alerts when a category moves.
@@ -44,6 +44,15 @@ The data is genuinely scraped, not seeded: 130 US visa bulletins and 424 Canadia
 draws, refreshed by a scheduled job every morning.
 
 <sub>`Next.js 15` `SSR` `Python` `GitHub Actions` — [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)</sub>
+
+**[KOVA Flooring](https://www.kovaflooring.com)** · brand site and dealer portal, shipped for a client
+
+Two halves behind one deploy. The public brand site is statically exported, so there is no server to
+run and Firebase never reaches the public bundle. Behind a login sits a dealer portal where each
+dealer sees pricing for their own tier next to live inventory, plus an admin console for editing
+price per product per tier and importing stock by CSV.
+
+<sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare` — [live](https://www.kovaflooring.com) · source private, client work</sub>
 
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
