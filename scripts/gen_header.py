@@ -73,17 +73,17 @@ def fetch():
 
 
 # ── palette ────────────────────────────────────────────────────────────────
-# Lifted from my own sites rather than invented here: mint #4FD6C0 / #0D9488 is
-# the accent shared by the portfolio and Avatar Dash, violet #8B93FF is always
-# the second. The dog gets the same treatment she has in Avatar Dash — a mint
-# halo and a white rim.
+# Achievement Arcade: deep violet cabinet, score-yellow highlights, teal active
+# platforms, and muted purple platforms waiting for the dog to reach them.
 THEMES = {
-    "light": dict(ink="#10141C", sub="#4A5262", faint="#8891A3", accent="#0D9488",
-                  accent2="#6366F1", hair="#FFFFFF", bar="#CFE7E2", barhi="#0D9488",
-                  base="#DDE3E8", shadow="#B9C6C3", halo="#0D9488"),
-    "dark":  dict(ink="#ECEEF3", sub="#A7AFC0", faint="#6B7488", accent="#4FD6C0",
-                  accent2="#8B93FF", hair="#FFFFFF", bar="#223B3A", barhi="#4FD6C0",
-                  base="#1C2430", shadow="#05070C", halo="#4FD6C0"),
+    "light": dict(bg="#171431", ink="#F5F3FF", sub="#C9C6E4", faint="#A9AFE6",
+                  accent="#4FD6C0", accent2="#FFD75E", hair="#FFD75E",
+                  bar="#454074", barhi="#43CDB7", base="#625DC2", grid="#8B86DD",
+                  shadow="#070614", halo="#FFD75E", name_shadow="#5D3F8F"),
+    "dark":  dict(bg="#0D0B20", ink="#F5F3FF", sub="#C5C1E0", faint="#969DCE",
+                  accent="#4FD6C0", accent2="#FFD75E", hair="#FFD75E",
+                  bar="#2B2851", barhi="#43CDB7", base="#5752AD", grid="#7772CE",
+                  shadow="#030208", halo="#FFD75E", name_shadow="#4A3278"),
 }
 
 LINES = ["frontend / full-stack engineer",
@@ -92,15 +92,25 @@ LINES = ["frontend / full-stack engineer",
 DUR, TCYC = 4.4, 13.2
 
 # ── geometry ───────────────────────────────────────────────────────────────
-X0, PITCH, BW = 72.0, 39.5, 25.0
-BASE_Y, MAXH, STUB = 336.0, 100.0, 3.0
+X0, PITCH, BW = 72.0, 39.5, 28.0
+BASE_Y, MAXH, STUB = 336.0, 116.0, 5.0
 RUN, LOOP = 9.6, 13.6          # dog crosses in RUN, whole cycle is LOOP
-DOG_R, LIFT = 22.0, 22.0
+DOG_R, LIFT = 30.0, 31.0
 K_HOLD, K_OFF = 0.815, 0.885   # ridge stays lit until, then goes dark
 
 
 def bar_h(v, peak):
-    return STUB + (v / peak) * (MAXH - STUB) if v else STUB
+    # One unusually busy week should read as a finale, not flatten the rest of
+    # the level. Values above the 90th-percentile scale still reach the same
+    # honest maximum height; the raw contribution total remains in the stats.
+    return STUB + min(v / peak, 1.0) * (MAXH - STUB) if v else STUB
+
+
+def visual_peak(series):
+    active = sorted(v for v in series if v > 0)
+    if not active:
+        return 1
+    return active[round((len(active) - 1) * .9)]
 
 
 def bars(c, series, peak):
@@ -120,7 +130,7 @@ def bars(c, series, peak):
         kt_p = f"0;{k_on:.4f};{k_peak:.4f};{k_dn:.4f};1"
         pop = 8.0
         out.append(
-            f'<rect x="{x:.1f}" y="{y:.1f}" width="{BW}" height="{h:.1f}" rx="3" fill="{c["bar"]}">'
+            f'<rect x="{x:.1f}" y="{y:.1f}" width="{BW}" height="{h:.1f}" rx="5" fill="{c["bar"]}">'
             f'<animate attributeName="fill" '
             f'values="{c["bar"]};{c["bar"]};{c["barhi"]};{c["barhi"]};{c["bar"]};{c["bar"]}" '
             f'keyTimes="{kt_c}" dur="{LOOP}s" repeatCount="indefinite"/>'
@@ -191,7 +201,7 @@ def font_face():
 
 
 def build(c, tn, series, total, repos, dog_b64):
-    peak = max(series) or 1
+    peak = visual_peak(series)
     n = len(series)
     dv, dk = dog_track(series, peak)
     dog_x0, dog_y0 = dv.split(';')[0].split()
@@ -207,20 +217,26 @@ def build(c, tn, series, total, repos, dog_b64):
   <defs>
     <clipPath id="dogClip-{tn}"><circle cx="0" cy="0" r="{DOG_R-1}"/></clipPath>
     <linearGradient id="rule-{tn}" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%"   stop-color="{c['accent']}" stop-opacity=".9"/>
-      <stop offset="45%"  stop-color="{c['accent']}" stop-opacity=".38"/>
+      <stop offset="0%"   stop-color="{c['accent2']}" stop-opacity=".95"/>
+      <stop offset="45%"  stop-color="{c['accent']}" stop-opacity=".55"/>
       <stop offset="100%" stop-color="{c['accent']}" stop-opacity="0"/>
     </linearGradient>
+    <pattern id="scan-{tn}" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="1" fill="{c['ink']}" opacity=".025"/>
+    </pattern>
     <style>
 {font_face()}
-      .name-{tn} {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.8px; }}
+      .name-{tn} {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.8px; filter:drop-shadow(4px 4px 0 {c['name_shadow']}); }}
       .sub-{tn}  {{ font:500 18px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
       .meta-{tn} {{ font:700 12.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent']}; letter-spacing:1.5px; }}
-      .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['ink']}; letter-spacing:-0.7px; }}
+      .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent2']}; letter-spacing:-0.7px; }}
       .nlab-{tn} {{ font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1.2px; }}
       .axis-{tn} {{ font:500 10px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1px; }}
     </style>
   </defs>
+
+  <rect width="1200" height="360" fill="{c['bg']}"/>
+  <rect width="1200" height="360" fill="url(#scan-{tn})"/>
 
   <g transform="translate(72,0)">
     <text class="meta-{tn}" x="0" y="48" opacity="1">SF BAY AREA / IRVINE, CA &#183; OPEN TO WORK
@@ -244,11 +260,13 @@ def build(c, tn, series, total, repos, dog_b64):
 {stats_block(tn, stats)}
 
   <g>
+      <path d="M {X0} {BASE_Y-38} H {X0+(n-1)*PITCH+BW:.1f} M {X0} {BASE_Y-76} H {X0+(n-1)*PITCH+BW:.1f} M {X0} {BASE_Y-114} H {X0+(n-1)*PITCH+BW:.1f}"
+            fill="none" stroke="{c['grid']}" stroke-width="1" stroke-dasharray="3 9" opacity=".18"/>
       {bars(c, series, peak)}
   </g>
   <rect x="{X0}" y="{BASE_Y}" width="{(n-1)*PITCH+BW:.0f}" height="1.4" fill="{c['base']}"/>
-  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">26 WEEKS AGO</text>
-  <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; weekly commits</text>
+  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">LEVEL &#183; LAST 26 WEEKS</text>
+  <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; CONTRIBUTION RUN</text>
 
   <g opacity="1" transform="translate({dog_x0},{dog_y0})">
     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.755;.815;1" dur="{LOOP}s" repeatCount="indefinite"/>
@@ -259,6 +277,13 @@ def build(c, tn, series, total, repos, dog_b64):
                         repeatCount="indefinite" calcMode="spline" keySplines="{';'.join(['.35 0 .45 1']*22)}"/>
       <ellipse cx="0" cy="{LIFT-2:.0f}" rx="15" ry="3" fill="{c['shadow']}" opacity=".4"/>
       <circle cx="0" cy="0" r="{DOG_R+6:.1f}" fill="{c['halo']}" opacity=".22"/>
+      <circle cx="{-DOG_R-10:.0f}" cy="3" r="3" fill="{c['accent2']}" opacity="0">
+        <animate attributeName="opacity" values="0;.9;0" dur=".7s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="1;4;1" dur=".7s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="{-DOG_R-4:.0f}" cy="14" r="2" fill="{c['accent']}" opacity="0">
+        <animate attributeName="opacity" values=".8;0;.8" dur=".9s" repeatCount="indefinite"/>
+      </circle>
       <circle cx="0" cy="0" r="{DOG_R+1:.1f}" fill="none" stroke="{c['hair']}" stroke-width="2"/>
       <image xlink:href="data:image/jpeg;base64,{dog_b64}" x="{-DOG_R:.0f}" y="{-DOG_R:.0f}"
              width="{DOG_R*2:.0f}" height="{DOG_R*2:.0f}"
