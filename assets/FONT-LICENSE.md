@@ -1,4 +1,15 @@
-# Space Grotesk
+# Fonts
+
+## Manrope
+
+`Manrope-500.woff2` and `Manrope-700.woff2` are subsets of Manrope, cut down to
+the glyphs used by the profile header and embedded in the generated SVGs. Manrope
+is by Mikhail Sharanda and is released under the SIL Open Font License 1.1, which
+permits embedding.
+
+Source: https://fonts.google.com/specimen/Manrope
+
+## Space Grotesk (previous header font)
 
 `SpaceGrotesk-500.woff2` and `SpaceGrotesk-700.woff2` are subsets of Space Grotesk,
 cut down to printable ASCII plus a few typographic marks (105 glyphs, ~6 KB each).

@@ -2,7 +2,7 @@
 """
 Regenerate the profile header SVGs from live GitHub data.
 
-Draws the last 12 months of contributions as a ridge of weekly bars, with the dog
+Draws the last 26 weeks of contributions as a ridge of weekly bars, with the dog
 running across it — each bar lights up as she steps on it and stays lit, so the whole
 ridge is glowing by the time she reaches the far end.
 
@@ -68,7 +68,8 @@ def fetch():
     user = payload["data"]["user"]
     cal = user["contributionsCollection"]["contributionCalendar"]
     weeks = [sum(d["contributionCount"] for d in w["contributionDays"]) for w in cal["weeks"]]
-    return weeks, cal["totalContributions"], user["repositories"]["totalCount"]
+    recent_weeks = weeks[-26:]
+    return recent_weeks, sum(recent_weeks), user["repositories"]["totalCount"]
 
 
 # ── palette ────────────────────────────────────────────────────────────────
@@ -91,7 +92,7 @@ LINES = ["frontend / full-stack engineer",
 DUR, TCYC = 4.4, 13.2
 
 # ── geometry ───────────────────────────────────────────────────────────────
-X0, PITCH, BW = 72.0, 19.5, 13.0
+X0, PITCH, BW = 72.0, 39.5, 25.0
 BASE_Y, MAXH, STUB = 336.0, 100.0, 3.0
 RUN, LOOP = 9.6, 13.6          # dog crosses in RUN, whole cycle is LOOP
 DOG_R, LIFT = 22.0, 22.0
@@ -176,15 +177,15 @@ def stats_block(tn, stats):
 
 
 def font_face():
-    """Space Grotesk, subset to 105 glyphs (printable ASCII plus a few typographic marks) and inlined as base64.
+    """Manrope, inlined as base64.
     A webfont fetched over the network would be blocked — SVGs loaded through <img>
     run in secure animated processing mode, which forbids external references, and
     the text would silently fall back to a system font."""
     out = []
     for w in (500, 700):
-        b64 = base64.b64encode((ASSETS / f"SpaceGrotesk-{w}.woff2").read_bytes()).decode()
+        b64 = base64.b64encode((ASSETS / f"Manrope-{w}.woff2").read_bytes()).decode()
         out.append(
-            f"      @font-face {{ font-family:'SG'; font-style:normal; font-weight:{w}; "
+            f"      @font-face {{ font-family:'Manrope'; font-style:normal; font-weight:{w}; "
             f"src:url(data:font/woff2;base64,{b64}) format('woff2'); }}")
     return "\n".join(out)
 
@@ -200,7 +201,7 @@ def build(c, tn, series, total, repos, dog_b64):
              (str(total), "CONTRIBUTIONS", 1020)]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1200 360" width="1200" height="360" role="img"
-     aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. {total} contributions in the last twelve months.">
+     aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. {total} contributions in the last 26 weeks.">
   <title>Weiren Feng — frontend / full-stack engineer</title>
   <desc>My dog running across my real GitHub contribution history, one week per step.</desc>
   <defs>
@@ -212,12 +213,12 @@ def build(c, tn, series, total, repos, dog_b64):
     </linearGradient>
     <style>
 {font_face()}
-      .name-{tn} {{ font:700 56px 'SG',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.4px; }}
-      .sub-{tn}  {{ font:500 18px 'SG',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
-      .meta-{tn} {{ font:700 12.5px 'SG',ui-monospace,Menlo,monospace; fill:{c['accent']}; letter-spacing:1.75px; }}
-      .num-{tn}  {{ font:700 30px 'SG',system-ui,-apple-system,sans-serif; fill:{c['ink']}; letter-spacing:-0.5px; }}
-      .nlab-{tn} {{ font:500 10.5px 'SG',ui-monospace,Menlo,monospace; fill:{c['faint']}; letter-spacing:1.4px; }}
-      .axis-{tn} {{ font:500 10px 'SG',ui-monospace,Menlo,monospace; fill:{c['faint']}; letter-spacing:1.1px; }}
+      .name-{tn} {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.8px; }}
+      .sub-{tn}  {{ font:500 18px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
+      .meta-{tn} {{ font:700 12.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent']}; letter-spacing:1.5px; }}
+      .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['ink']}; letter-spacing:-0.7px; }}
+      .nlab-{tn} {{ font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1.2px; }}
+      .axis-{tn} {{ font:500 10px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1px; }}
     </style>
   </defs>
 
@@ -246,7 +247,7 @@ def build(c, tn, series, total, repos, dog_b64):
       {bars(c, series, peak)}
   </g>
   <rect x="{X0}" y="{BASE_Y}" width="{(n-1)*PITCH+BW:.0f}" height="1.4" fill="{c['base']}"/>
-  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">52 WEEKS AGO</text>
+  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">26 WEEKS AGO</text>
   <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; weekly commits</text>
 
   <g opacity="1" transform="translate({dog_x0},{dog_y0})">
