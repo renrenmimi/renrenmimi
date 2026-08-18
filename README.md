@@ -7,7 +7,7 @@
 I build web apps end to end, and I have a habit of turning whatever I just learned into
 something you can click.
 
-That habit turned into seven interactive course sites. When I could not find a good
+That habit turned into a set of interactive course sites. When I could not find a good
 explanation of how an AI agent actually works, I built one that shows the `messages` array
 growing in real time. Same for data structures, algorithms, Redis, TypeScript, and APIs —
 if I had to squint at it, I made it visible.
@@ -56,8 +56,8 @@ price per product per tier and importing stock by CSV.
 
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
-Attach a reward to each task; clear them all and the app throws confetti. Zero third-party
-dependencies, and no `.xcodeproj` — it builds as a plain Swift package. It ships two hidden flags:
+Attach a reward to each task; clear them all and the app throws confetti. It builds as a plain
+Swift package — no `.xcodeproj`, SwiftUI and SwiftData only. It ships two hidden flags:
 `--snapshot` renders every screen offscreen to PNG without asking for screen-recording permission,
 and `--selftest` asserts the things screenshots can't prove, like drag-and-drop placement and
 schema backfill.
@@ -66,8 +66,7 @@ schema backfill.
 
 ### Things I made to explain things
 
-Seven sites, one idea: every concept gets an animation, not just a paragraph. All static, all free
-to run, progress kept in `localStorage`, all bilingual.
+Every concept gets an animation. All static and bilingual, with progress kept in `localStorage`.
 
 | | |
 |---|---|
@@ -95,8 +94,7 @@ killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you st
 [tank battles](https://renrenmimi.github.io/Tank/), a
 [fluid sim](https://renrenmimi.github.io/fluid-simulation/), an
 [n-body gravity sandbox](https://renrenmimi.github.io/particle-galaxy/), and a handful of
-cognitive drills. Every one is a single HTML file with no build step and no dependencies — open
-it and it just runs.
+cognitive drills. Each is a single HTML file — open it in a browser.
 
 ---
 
