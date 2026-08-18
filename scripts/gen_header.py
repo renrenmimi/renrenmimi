@@ -72,14 +72,17 @@ def fetch():
 
 
 # ── palette ────────────────────────────────────────────────────────────────
-# Sampled off the dog: cream coat, warm charcoal, caramel nose.
+# Lifted from my own sites rather than invented here: mint #4FD6C0 / #0D9488 is
+# the accent shared by the portfolio and Avatar Dash, violet #8B93FF is always
+# the second. The dog gets the same treatment she has in Avatar Dash — a mint
+# halo and a white rim.
 THEMES = {
-    "light": dict(ink="#2B2420", sub="#6F6458", faint="#9C9184", accent="#B07F52",
-                  hair="#E2D4C0", bar="#DCC7A8", barhi="#A56D3B", base="#E3D8C7",
-                  shadow="#CDBFA9"),
-    "dark":  dict(ink="#EDE4D8", sub="#9C9184", faint="#6E6459", accent="#DFB684",
-                  hair="#4A3F33", bar="#463829", barhi="#F0C68E", base="#2A231B",
-                  shadow="#0A0806"),
+    "light": dict(ink="#10141C", sub="#4A5262", faint="#8891A3", accent="#0D9488",
+                  accent2="#6366F1", hair="#FFFFFF", bar="#CFE7E2", barhi="#0D9488",
+                  base="#DDE3E8", shadow="#B9C6C3", halo="#0D9488"),
+    "dark":  dict(ink="#ECEEF3", sub="#A7AFC0", faint="#6B7488", accent="#4FD6C0",
+                  accent2="#8B93FF", hair="#FFFFFF", bar="#223B3A", barhi="#4FD6C0",
+                  base="#1C2430", shadow="#05070C", halo="#4FD6C0"),
 }
 
 LINES = ["frontend / full-stack engineer",
@@ -172,6 +175,20 @@ def stats_block(tn, stats):
     return "\n".join(out)
 
 
+def font_face():
+    """Space Grotesk, subset to the 66 glyphs the header uses and inlined as base64.
+    A webfont fetched over the network would be blocked — SVGs loaded through <img>
+    run in secure animated processing mode, which forbids external references, and
+    the text would silently fall back to a system font."""
+    out = []
+    for w in (500, 700):
+        b64 = base64.b64encode((ASSETS / f"SpaceGrotesk-{w}.woff2").read_bytes()).decode()
+        out.append(
+            f"      @font-face {{ font-family:'SG'; font-style:normal; font-weight:{w}; "
+            f"src:url(data:font/woff2;base64,{b64}) format('woff2'); }}")
+    return "\n".join(out)
+
+
 def build(c, tn, series, total, repos, dog_b64):
     peak = max(series) or 1
     n = len(series)
@@ -194,12 +211,13 @@ def build(c, tn, series, total, repos, dog_b64):
       <stop offset="100%" stop-color="{c['accent']}" stop-opacity="0"/>
     </linearGradient>
     <style>
-      .name-{tn} {{ font:700 58px Georgia,'Iowan Old Style','Times New Roman',serif; fill:{c['ink']}; letter-spacing:-1.1px; }}
-      .sub-{tn}  {{ font:400 18.5px 'Segoe UI',-apple-system,Helvetica,Arial,sans-serif; fill:{c['sub']}; }}
-      .meta-{tn} {{ font:600 12px ui-monospace,'SF Mono',Menlo,Consolas,monospace; fill:{c['accent']}; letter-spacing:2.7px; }}
-      .num-{tn}  {{ font:700 30px Georgia,'Iowan Old Style',serif; fill:{c['ink']}; }}
-      .nlab-{tn} {{ font:400 10.5px ui-monospace,'SF Mono',Menlo,Consolas,monospace; fill:{c['faint']}; letter-spacing:1.3px; }}
-      .axis-{tn} {{ font:400 10px ui-monospace,'SF Mono',Menlo,Consolas,monospace; fill:{c['faint']}; letter-spacing:1px; }}
+{font_face()}
+      .name-{tn} {{ font:700 56px 'SG',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.4px; }}
+      .sub-{tn}  {{ font:500 18px 'SG',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
+      .meta-{tn} {{ font:700 12.5px 'SG',ui-monospace,Menlo,monospace; fill:{c['accent']}; letter-spacing:1.75px; }}
+      .num-{tn}  {{ font:700 30px 'SG',system-ui,-apple-system,sans-serif; fill:{c['ink']}; letter-spacing:-0.5px; }}
+      .nlab-{tn} {{ font:500 10.5px 'SG',ui-monospace,Menlo,monospace; fill:{c['faint']}; letter-spacing:1.4px; }}
+      .axis-{tn} {{ font:500 10px 'SG',ui-monospace,Menlo,monospace; fill:{c['faint']}; letter-spacing:1.1px; }}
     </style>
   </defs>
 
@@ -239,7 +257,8 @@ def build(c, tn, series, total, repos, dog_b64):
       <animateTransform attributeName="transform" type="translate" values="{hop}" dur="{RUN}s"
                         repeatCount="indefinite" calcMode="spline" keySplines="{';'.join(['.35 0 .45 1']*22)}"/>
       <ellipse cx="0" cy="{LIFT-2:.0f}" rx="15" ry="3" fill="{c['shadow']}" opacity=".4"/>
-      <circle cx="0" cy="0" r="{DOG_R+1.6:.1f}" fill="none" stroke="{c['hair']}" stroke-width="2.4"/>
+      <circle cx="0" cy="0" r="{DOG_R+6:.1f}" fill="{c['halo']}" opacity=".22"/>
+      <circle cx="0" cy="0" r="{DOG_R+1:.1f}" fill="none" stroke="{c['hair']}" stroke-width="2"/>
       <image xlink:href="data:image/jpeg;base64,{dog_b64}" x="{-DOG_R:.0f}" y="{-DOG_R:.0f}"
              width="{DOG_R*2:.0f}" height="{DOG_R*2:.0f}"
              clip-path="url(#dogClip-{tn})" preserveAspectRatio="xMidYMid slice"/>
