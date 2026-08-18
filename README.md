@@ -23,7 +23,7 @@ deletion writes a TTL tombstone, so a second open tab cannot bring the profile b
 carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
 transaction, so two people redeeming the same code cannot both succeed.
 
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
@@ -32,7 +32,7 @@ Acoustic and semantic signals combined into one score every two seconds. The red
 the demo replay from a script and keeps its 100+ tests deterministic. Falls back from
 Groq Whisper to Web Speech to raw loudness, so it still works with the network off.
 
-<sub>`React` `TypeScript` `Groq` `Vitest` `Playwright` — [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)</sub>
+<sub>`React` `TypeScript` `Groq` `Vitest` `Playwright`</sub> · [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)
 
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration timeline tracker
 
@@ -40,7 +40,7 @@ Ten years of visa bulletin history, wait-time estimates, and email alerts when a
 The data comes from 130 US visa bulletins and 424 Canadian Express Entry draws, refreshed by a
 scheduled job every morning.
 
-<sub>`Next.js 15` `SSR` `Python` `GitHub Actions` — [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)</sub>
+<sub>`Next.js 15` `SSR` `Python` `GitHub Actions`</sub> · [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)
 
 **[KOVA Flooring](https://www.kovaflooring.com)** · brand site and dealer portal, shipped for a client
 
@@ -49,7 +49,7 @@ run and Firebase never reaches the public bundle. Behind a login sits a dealer p
 dealer sees pricing for their own tier next to live inventory, plus an admin console for editing
 price per product per tier and importing stock by CSV.
 
-<sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare` — [live](https://www.kovaflooring.com)</sub>
+<sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare`</sub> · [live](https://www.kovaflooring.com)
 
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
@@ -58,7 +58,7 @@ SwiftData as a plain Swift package. Two hidden flags do the testing: `--snapshot
 screen offscreen to PNG without asking for screen-recording permission, and `--selftest` asserts
 what screenshots can't prove, like drag-and-drop placement and schema backfill.
 
-<sub>`SwiftUI` `SwiftData` — [screenshots](https://github.com/renrenmimi/iCanDoIt#readme) · [repo](https://github.com/renrenmimi/iCanDoIt)</sub>
+<sub>`SwiftUI` `SwiftData`</sub> · [screenshots](https://github.com/renrenmimi/iCanDoIt#readme) · [repo](https://github.com/renrenmimi/iCanDoIt)
 
 ### Things I built to explain things
 
