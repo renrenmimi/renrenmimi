@@ -23,13 +23,13 @@ deletion writes a TTL tombstone, so a second open tab cannot bring the profile b
 carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
 transaction, so two people redeeming the same code cannot both succeed.
 
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 242 commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)</sub>
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
 Acoustic and semantic signals combined into one score every two seconds. The reducer never calls
 `Date.now()`; every transition reads the timestamp off a `TICK` event instead, which is what lets
-the demo replay from a script and keeps the 100+ transition tests deterministic. Falls back from
+the demo replay from a script and keeps its 100+ tests deterministic. Falls back from
 Groq Whisper to Web Speech to raw loudness, so it still works with the network off.
 
 <sub>`React` `TypeScript` `Groq` `Vitest` `Playwright` — [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)</sub>
@@ -53,15 +53,14 @@ price per product per tier and importing stock by CSV.
 
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
-Attach a reward to each task; clear them all and the app throws confetti. It builds as a plain
-Swift package, using SwiftUI and SwiftData. It ships two hidden flags:
-`--snapshot` renders every screen offscreen to PNG without asking for screen-recording permission,
-and `--selftest` asserts the things screenshots can't prove, like drag-and-drop placement and
-schema backfill.
+Attach a reward to each task; clear them all and the app throws confetti. Built with SwiftUI and
+SwiftData as a plain Swift package. Two hidden flags do the testing: `--snapshot` renders every
+screen offscreen to PNG without asking for screen-recording permission, and `--selftest` asserts
+what screenshots can't prove, like drag-and-drop placement and schema backfill.
 
 <sub>`SwiftUI` `SwiftData` — [screenshots](https://github.com/renrenmimi/iCanDoIt#readme) · [repo](https://github.com/renrenmimi/iCanDoIt)</sub>
 
-### Things I made to explain things
+### Things I built to explain things
 
 Every concept gets an animation. All static and bilingual, with progress kept in `localStorage`.
 
@@ -85,7 +84,7 @@ is the dog in my avatar. Variable-height jumps, 100 ms of coyote time, input buf
 fixed-step physics loop decoupled from rendering. A Node script walks the level before release and
 checks collision at full speed, the jump distances, and that each enemy has a platform under it.
 
-Also: a [Dota-flavoured snake](https://renrenmimi.github.io/dota-snake/) that calls your
+Also: a [Dota-flavored snake](https://renrenmimi.github.io/dota-snake/) that calls your
 killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you steer by hovering,
 [tank battles](https://renrenmimi.github.io/Tank/), a
 [fluid sim](https://renrenmimi.github.io/fluid-simulation/), an
@@ -98,6 +97,7 @@ cognitive drills. Each is a single HTML file — open it in a browser.
 
 [Portfolio](https://renrenmimi.github.io/) · [LinkedIn](https://www.linkedin.com/in/fengweiren) · [Email](mailto:feng.weir@northeastern.edu)
 
-<sub>Six years as a data analyst before an M.S. in Information Systems. I still build with one eye
-on what the numbers say afterwards. GitHub's language bar reads as almost
-entirely TypeScript; the Swift is a macOS app and the Python is the scrapers behind GreenLane.</sub>
+---
+
+© 2026 Weiren Feng. All rights reserved. Published for reading and portfolio purposes; not
+licensed for reuse, modification, or redistribution.
