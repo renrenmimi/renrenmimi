@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="./assets/header-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/header-light.svg">
-  <img alt="Weiren Feng — frontend / full-stack engineer, SF Bay Area. 765 contributions in the last twelve months." src="./assets/header-light.svg">
+  <img alt="Weiren Feng — frontend / full-stack engineer, open to new-grad through mid-level roles in the SF Bay Area or Irvine, CA." src="./assets/header-light.svg">
 </picture>
 
 I build web apps end to end, and I have a habit of turning whatever I just learned into
@@ -12,7 +12,7 @@ explanation of how an AI agent actually works, I built one that shows the `messa
 growing in real time. Same for data structures, algorithms, Redis, TypeScript, and APIs —
 if I had to squint at it, I made it visible.
 
-**Currently looking for frontend / full-stack roles in the SF Bay Area.**
+**Open to frontend / full-stack roles — new grad through mid-level — in the SF Bay Area or Irvine, CA.**
 
 ---
 

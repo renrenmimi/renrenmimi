@@ -87,7 +87,7 @@ THEMES = {
 
 LINES = ["frontend / full-stack engineer",
          "I turn what I just learned into something you can click",
-         "open to new-grad and full-stack roles, SF Bay Area"]
+         "open to new-grad through mid-level roles \u00b7 Bay Area or Irvine"]
 DUR, TCYC = 4.4, 13.2
 
 # ── geometry ───────────────────────────────────────────────────────────────
@@ -176,7 +176,7 @@ def stats_block(tn, stats):
 
 
 def font_face():
-    """Space Grotesk, subset to the 66 glyphs the header uses and inlined as base64.
+    """Space Grotesk, subset to 105 glyphs (printable ASCII plus a few typographic marks) and inlined as base64.
     A webfont fetched over the network would be blocked — SVGs loaded through <img>
     run in secure animated processing mode, which forbids external references, and
     the text would silently fall back to a system font."""
@@ -200,7 +200,7 @@ def build(c, tn, series, total, repos, dog_b64):
              (str(total), "CONTRIBUTIONS", 1020)]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1200 360" width="1200" height="360" role="img"
-     aria-label="Weiren Feng, frontend and full-stack engineer in the SF Bay Area. {total} contributions in the last twelve months.">
+     aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. {total} contributions in the last twelve months.">
   <title>Weiren Feng — frontend / full-stack engineer</title>
   <desc>My dog running across my real GitHub contribution history, one week per step.</desc>
   <defs>
@@ -222,7 +222,7 @@ def build(c, tn, series, total, repos, dog_b64):
   </defs>
 
   <g transform="translate(72,0)">
-    <text class="meta-{tn}" x="0" y="48" opacity="1">SAN FRANCISCO BAY AREA &#183; OPEN TO WORK
+    <text class="meta-{tn}" x="0" y="48" opacity="1">SF BAY AREA / IRVINE, CA &#183; OPEN TO WORK
       <animate attributeName="opacity" values="0;1" dur=".7s" begin=".1s" fill="freeze"/>
     </text>
     <text class="name-{tn}" x="0" y="104" opacity="1">Weiren Feng
