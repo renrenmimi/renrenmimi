@@ -58,7 +58,7 @@ SwiftData as a plain Swift package. Two hidden flags do the testing: `--snapshot
 screen offscreen to PNG without asking for screen-recording permission, and `--selftest` asserts
 what screenshots can't prove, like drag-and-drop placement and schema backfill.
 
-<sub>`SwiftUI` `SwiftData`</sub> · [screenshots](https://github.com/renrenmimi/iCanDoIt#readme) · [repo](https://github.com/renrenmimi/iCanDoIt)
+<sub>`SwiftUI` `SwiftData`</sub> · [repo](https://github.com/renrenmimi/iCanDoIt)
 
 ### Things I built to explain things
 
