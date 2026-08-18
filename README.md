@@ -4,8 +4,7 @@
   <img alt="Weiren Feng — frontend / full-stack engineer, open to new-grad through mid-level roles in the SF Bay Area or Irvine, CA." src="./assets/header-light.svg">
 </picture>
 
-I build web apps end to end, and I have a habit of turning whatever I just learned into
-something you can click.
+I build web apps end to end, and I turn what I learn into something you can click.
 
 That habit turned into a set of interactive course sites. When I could not find a good
 explanation of how an AI agent works, I built one that shows the `messages` array
@@ -79,7 +78,7 @@ Every concept gets an animation. All static and bilingual, with progress kept in
 <sub>AgentLab's responses are recorded in `lib/scenario.ts`, so it runs without an API key. Each
 wrong answer in its exercises comes with an explanation of why it is wrong.</sub>
 
-### Things I made for fun
+### Games and experiments
 
 **[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a platformer whose player character
 is the dog in my avatar. Variable-height jumps, 100 ms of coyote time, input buffering, and a
