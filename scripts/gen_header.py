@@ -150,7 +150,7 @@ def subtitles(tn):
         kt = ";".join(f"{v:.4f}" for v in
                       [0, b/TCYC, (b+.40)/TCYC, (b+DUR-.55)/TCYC, (b+DUR-.15)/TCYC, 1])
         out.append(
-            f'      <text x="0" y="0" class="sub-{tn}" opacity="0">{text}\n'
+            f'      <text x="0" y="0" class="sub-{tn}" opacity="{1 if i == 0 else 0}">{text}\n'
             f'        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt}" '
             f'dur="{TCYC}s" repeatCount="indefinite"/>\n'
             f'        <animate attributeName="x" values="7;7;0;0;0;0" keyTimes="{kt}" '
@@ -163,7 +163,7 @@ def stats_block(tn, stats):
     out = []
     for k, (num, label, x) in enumerate(stats):
         out.append(
-            f'  <g opacity="0">\n'
+            f'  <g opacity="1">\n'
             f'    <animate attributeName="opacity" values="0;1" dur=".8s" '
             f'begin="{1.15 + k*0.15:.2f}s" fill="freeze"/>\n'
             f'    <text class="num-{tn}"  x="{x}" y="102">{num}</text>\n'
@@ -176,6 +176,7 @@ def build(c, tn, series, total, repos, dog_b64):
     peak = max(series) or 1
     n = len(series)
     dv, dk = dog_track(series, peak)
+    dog_x0, dog_y0 = dv.split(';')[0].split()
     hop = "; ".join("0 " + ("-5" if i % 2 else "0") for i in range(23))
     stats = [(str(repos), "PUBLIC REPOS", 800),
              (str(LIVE_SITES), "LIVE SITES", 925),
@@ -203,14 +204,14 @@ def build(c, tn, series, total, repos, dog_b64):
   </defs>
 
   <g transform="translate(72,0)">
-    <text class="meta-{tn}" x="0" y="48" opacity="0">SAN FRANCISCO BAY AREA &#183; OPEN TO WORK
+    <text class="meta-{tn}" x="0" y="48" opacity="1">SAN FRANCISCO BAY AREA &#183; OPEN TO WORK
       <animate attributeName="opacity" values="0;1" dur=".7s" begin=".1s" fill="freeze"/>
     </text>
-    <text class="name-{tn}" x="0" y="104" opacity="0">Weiren Feng
+    <text class="name-{tn}" x="0" y="104" opacity="1">Weiren Feng
       <animate attributeName="opacity" values="0;1" dur=".9s" begin=".3s" fill="freeze"/>
       <animateTransform attributeName="transform" type="translate" values="0 12;0 0" dur=".9s" begin=".3s" fill="freeze"/>
     </text>
-    <rect x="0" y="126" width="0" height="2" rx="1" fill="url(#rule-{tn})">
+    <rect x="0" y="126" width="420" height="2" rx="1" fill="url(#rule-{tn})">
       <animate attributeName="width" values="0;420" dur="1.1s" begin=".8s" fill="freeze"/>
     </rect>
     <g transform="translate(0,162)">
@@ -230,7 +231,7 @@ def build(c, tn, series, total, repos, dog_b64):
   <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">52 WEEKS AGO</text>
   <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; weekly commits</text>
 
-  <g opacity="0">
+  <g opacity="1" transform="translate({dog_x0},{dog_y0})">
     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.755;.815;1" dur="{LOOP}s" repeatCount="indefinite"/>
     <animateTransform attributeName="transform" type="translate" values="{dv}" keyTimes="{dk}"
                       dur="{LOOP}s" repeatCount="indefinite"/>
