@@ -1,0 +1,42 @@
+name: refresh header
+
+on:
+  schedule:
+    # 06:20 UTC daily — a few minutes off the hour, since scheduled runs
+    # queue behind everyone else's on-the-hour crons.
+    - cron: "20 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/gen_header.py"
+      - "assets/dog.jpg"
+      - ".github/workflows/header.yml"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Regenerate header SVGs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USER: ${{ github.repository_owner }}
+        run: python3 scripts/gen_header.py
+
+      - name: Commit if the graph moved
+        run: |
+          if git diff --quiet -- assets; then
+            echo "No change."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          git commit -m "Refresh header with today's contribution graph"
+          git push
