@@ -1,3 +1,9 @@
+<p align="right">
+  <a href="https://renrenmimi.github.io/">Portfolio</a> ·
+  <a href="https://www.linkedin.com/in/fengweiren">LinkedIn</a> ·
+  <a href="mailto:feng.weir@northeastern.edu">Email</a>
+</p>
+
 <picture>
   <source media="(prefers-color-scheme: dark)"  srcset="./assets/header-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/header-light.svg">
@@ -11,8 +17,6 @@ explanation of how an AI agent works, I built one that shows the `messages` arra
 growing in real time. Same for data structures, algorithms, Redis, TypeScript, and APIs.
 
 **Open to frontend / full-stack roles — new grad through mid-level — in the SF Bay Area or Irvine, CA.**
-
-[Portfolio](https://renrenmimi.github.io/) · [LinkedIn](https://www.linkedin.com/in/fengweiren) · [Email](mailto:feng.weir@northeastern.edu)
 
 ---
 
