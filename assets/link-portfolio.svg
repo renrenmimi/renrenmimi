@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="30" viewBox="0 0 132 30" role="img" aria-label="Portfolio">
+  <rect x=".75" y=".75" width="130.5" height="28.5" rx="14.25" fill="#171431" stroke="#4FD6C0" stroke-width="1.5"/>
+  <text x="15" y="19" fill="#F5F3FF" font-family="system-ui,-apple-system,'Segoe UI',sans-serif" font-size="11" font-weight="700" letter-spacing="1.1">PORTFOLIO</text>
+  <path d="M108 18.5 116.5 10m-6 0h6v6" fill="none" stroke="#4FD6C0" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
