@@ -89,8 +89,6 @@ wrong answer in its exercises comes with an explanation of why it is wrong.</sub
 rooms and send a cartoon Renren from one tab to another. No account, no backend — just browser
 tabs talking.
 
-[live](https://renrenmimi.github.io/renren-across-tabs/) · [repo](https://github.com/renrenmimi/renren-across-tabs)
-
 **[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a small platformer starring the dog
 in my avatar, with variable-height jumps, coyote time, and buffered input.
 
