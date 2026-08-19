@@ -86,10 +86,10 @@ wrong answer in its exercises comes with an explanation of why it is wrong.</sub
 ### Games and experiments
 
 **[Renren Across Tabs](https://renrenmimi.github.io/renren-across-tabs/)** — open multiple browser
-rooms and send a cartoon Renren between them. Tabs discover one another, elect a coordinator, share
-versioned state, and recover him if his tab closes — no backend.
+rooms and send a cartoon Renren from one tab to another. No account, no backend — just browser
+tabs talking.
 
-<sub>`TypeScript` `BroadcastChannel` `localStorage` `GitHub Pages`</sub> · [live](https://renrenmimi.github.io/renren-across-tabs/) · [repo](https://github.com/renrenmimi/renren-across-tabs)
+[live](https://renrenmimi.github.io/renren-across-tabs/) · [repo](https://github.com/renrenmimi/renren-across-tabs)
 
 **[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a small platformer starring the dog
 in my avatar, with variable-height jumps, coyote time, and buffered input.
