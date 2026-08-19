@@ -38,7 +38,7 @@ Acoustic and semantic signals combined into one score every two seconds. The red
 the demo replay from a script and keeps its 100+ tests deterministic. Falls back from
 Groq Whisper to Web Speech to raw loudness, so it still works with the network off.
 
-<sub>`React` `TypeScript` `Groq` `Vitest` `Playwright`</sub> · [zero-token demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)
+<sub>`React` `TypeScript` `Groq` `Vitest` `Playwright`</sub> · [demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)
 
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration timeline tracker
 
