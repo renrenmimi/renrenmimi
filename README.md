@@ -12,6 +12,8 @@ growing in real time. Same for data structures, algorithms, Redis, TypeScript, a
 
 **Open to frontend / full-stack roles — new grad through mid-level — in the SF Bay Area or Irvine, CA.**
 
+[Portfolio](https://renrenmimi.github.io/) · [LinkedIn](https://www.linkedin.com/in/fengweiren) · [Email](mailto:feng.weir@northeastern.edu)
+
 ---
 
 ### Things I've shipped
@@ -79,10 +81,14 @@ wrong answer in its exercises comes with an explanation of why it is wrong.</sub
 
 ### Games and experiments
 
-**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a platformer whose player character
-is the dog in my avatar. Variable-height jumps, 100 ms of coyote time, input buffering, and a
-fixed-step physics loop decoupled from rendering. A Node script walks the level before release and
-checks collision at full speed, the jump distances, and that each enemy has a platform under it.
+**[Renren Across Tabs](https://renrenmimi.github.io/renren-across-tabs/)** — open multiple browser
+rooms and send a cartoon Renren between them. Tabs discover one another, elect a coordinator, share
+versioned state, and recover him if his tab closes — no backend.
+
+<sub>`TypeScript` `BroadcastChannel` `localStorage` `GitHub Pages`</sub> · [live](https://renrenmimi.github.io/renren-across-tabs/) · [repo](https://github.com/renrenmimi/renren-across-tabs)
+
+**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a small platformer starring the dog
+in my avatar, with variable-height jumps, coyote time, and buffered input.
 
 Also: a [Dota-flavored snake](https://renrenmimi.github.io/dota-snake/) that calls your
 killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you steer by hovering,
