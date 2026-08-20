@@ -97,6 +97,7 @@ BASE_Y, MAXH, STUB = 336.0, 116.0, 5.0
 RUN, LOOP = 9.6, 13.6          # dog crosses in RUN, whole cycle is LOOP
 DOG_R, LIFT = 30.0, 31.0
 K_HOLD, K_OFF = 0.815, 0.885   # ridge stays lit until, then goes dark
+SUB, HOP = 16, 5.0             # path samples per week-step, and bounce height
 
 
 def bar_h(v, peak):
@@ -124,35 +125,87 @@ def bars(c, series, peak):
         # repeatCount="indefinite" instead would make them blink on their own schedule,
         # completely decoupled from where the dog actually is.
         k_on = t / LOOP
-        k_peak = min((t + 0.14) / LOOP, K_HOLD - 0.002)
-        k_dn = min((t + 0.95) / LOOP, 0.998)
+        k_peak = min((t + 0.13) / LOOP, 0.9900)
+        k_set = min((t + 0.42) / LOOP, 0.9930)
+        k_dn = min((t + 1.00) / LOOP, 0.9960)
         kt_c = f"0;{k_on:.4f};{k_peak:.4f};{K_HOLD};{K_OFF};1"
-        kt_p = f"0;{k_on:.4f};{k_peak:.4f};{k_dn:.4f};1"
-        pop = 8.0
+        kt_p = f"0;{k_on:.4f};{k_peak:.4f};{k_set:.4f};{k_dn:.4f};1"
+        pop, dip = 8.0, 1.3
+        # Snap up under the paw, sink just past the resting height, then ease back
+        # up to it. The fall used to be linear, so every bar stopped dead the
+        # instant it touched the baseline — 26 of those is most of the stutter.
+        spl = "0 0 1 1;0 .75 .25 1;.4 0 .6 1;0 .55 .3 1;0 0 1 1"
         out.append(
             f'<rect x="{x:.1f}" y="{y:.1f}" width="{BW}" height="{h:.1f}" rx="5" fill="{c["bar"]}">'
             f'<animate attributeName="fill" '
             f'values="{c["bar"]};{c["bar"]};{c["barhi"]};{c["barhi"]};{c["bar"]};{c["bar"]}" '
             f'keyTimes="{kt_c}" dur="{LOOP}s" repeatCount="indefinite"/>'
-            f'<animate attributeName="y" values="{y:.1f};{y:.1f};{y-pop:.1f};{y:.1f};{y:.1f}" '
+            f'<animate attributeName="y" '
+            f'values="{y:.1f};{y:.1f};{y-pop:.1f};{y+dip:.1f};{y:.1f};{y:.1f}" '
             f'keyTimes="{kt_p}" dur="{LOOP}s" repeatCount="indefinite" calcMode="spline" '
-            f'keySplines=".2 0 .3 1;.3 0 .5 1;0 0 1 1;0 0 1 1"/>'
-            f'<animate attributeName="height" values="{h:.1f};{h:.1f};{h+pop:.1f};{h:.1f};{h:.1f}" '
+            f'keySplines="{spl}"/>'
+            f'<animate attributeName="height" '
+            f'values="{h:.1f};{h:.1f};{h+pop:.1f};{h-dip:.1f};{h:.1f};{h:.1f}" '
             f'keyTimes="{kt_p}" dur="{LOOP}s" repeatCount="indefinite" calcMode="spline" '
-            f'keySplines=".2 0 .3 1;.3 0 .5 1;0 0 1 1;0 0 1 1"/>'
+            f'keySplines="{spl}"/>'
             f'</rect>')
     return "\n      ".join(out)
 
 
+def _tangents(ys):
+    """Fritsch-Carlson slopes, so the smoothed path never overshoots a week top.
+    Plain Catmull-Rom would bulge past the tall bars either side of a quiet week
+    and sink the dog into the very bar she is supposed to be standing on."""
+    n = len(ys)
+    d = [(ys[i + 1] - ys[i]) / PITCH for i in range(n - 1)]
+    m = [d[0]] + [(d[i - 1] + d[i]) / 2 for i in range(1, n - 1)] + [d[-1]]
+    for i in range(1, n - 1):
+        if d[i - 1] * d[i] <= 0:                       # a local peak or valley
+            m[i] = 0.0
+        else:
+            lim = 3 * min(abs(d[i - 1]), abs(d[i]))
+            m[i] = max(-lim, min(lim, m[i]))
+    return m
+
+
 def dog_track(series, peak):
+    """One sample per week made every bar a corner: the dog's vertical speed
+    flipped instantly on each step, which is what read as stuttering. Sampling a
+    monotone cubic SUB times per step rounds the corners off without moving any
+    of the arrival times the bars are keyed to."""
     n = len(series)
+    ys = [BASE_Y - bar_h(v, peak) - LIFT for v in series]
+    m = _tangents(ys)
     pts, kts = [], []
-    for i, v in enumerate(series):
-        pts.append(f"{X0 + i*PITCH + BW/2:.1f} {BASE_Y - bar_h(v, peak) - LIFT:.1f}")
-        kts.append(f"{(i/(n-1))*(RUN/LOOP):.4f}")
+    for i in range(n - 1):
+        for s in range(SUB):
+            t = s / SUB
+            t2, t3 = t * t, t * t * t
+            y = ((2*t3 - 3*t2 + 1) * ys[i] + (t3 - 2*t2 + t) * PITCH * m[i]
+                 + (3*t2 - 2*t3) * ys[i + 1] + (t3 - t2) * PITCH * m[i + 1])
+            pts.append(f"{X0 + (i + t)*PITCH + BW/2:.1f} {y:.1f}")
+            kts.append(f"{((i + t)/(n - 1))*(RUN/LOOP):.5f}")
+    pts.append(f"{X0 + (n - 1)*PITCH + BW/2:.1f} {ys[-1]:.1f}")
+    kts.append(f"{RUN/LOOP:.5f}")
     pts.append(pts[-1])          # wait at the far end until the cycle restarts
     kts.append("1")
     return ";".join(pts), ";".join(kts)
+
+
+def dog_hop(n):
+    """One bounce per week-step, on the run's own timeline. The old track hopped
+    23 times across 25 steps, so the bounce drifted out of phase with the paw and
+    she spent most of the ridge landing in mid-air."""
+    steps = n - 1
+    vals, kts, spl = [], [], []
+    for s in range(steps):
+        vals += ["0 0", f"0 {-HOP:g}"]
+        kts += [f"{(s/steps)*(RUN/LOOP):.5f}", f"{((s + .5)/steps)*(RUN/LOOP):.5f}"]
+        spl += ["0 .55 .45 1", ".55 0 1 .45"]   # push off, then drop into the landing
+    vals += ["0 0", "0 0"]                      # stand still once she is across
+    kts += [f"{RUN/LOOP:.5f}", "1"]
+    spl += ["0 0 1 1"]
+    return "; ".join(vals), ";".join(kts), ";".join(spl)
 
 
 def subtitles(tn):
@@ -166,9 +219,11 @@ def subtitles(tn):
         out.append(
             f'      <text x="0" y="0" class="sub-{tn}" opacity="{1 if i == 0 else 0}">{text}\n'
             f'        <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="{kt}" '
-            f'dur="{TCYC}s" repeatCount="indefinite"/>\n'
+            f'dur="{TCYC}s" repeatCount="indefinite" calcMode="spline" '
+            f'keySplines="0 0 1 1;0 .6 .3 1;0 0 1 1;.4 0 1 .6;0 0 1 1"/>\n'
             f'        <animate attributeName="x" values="7;7;0;0;0;0" keyTimes="{kt}" '
-            f'dur="{TCYC}s" repeatCount="indefinite"/>\n'
+            f'dur="{TCYC}s" repeatCount="indefinite" calcMode="spline" '
+            f'keySplines="0 0 1 1;0 .7 .25 1;0 0 1 1;0 0 1 1;0 0 1 1"/>\n'
             f'      </text>')
     return "\n".join(out)
 
@@ -179,7 +234,8 @@ def stats_block(tn, stats):
         out.append(
             f'  <g opacity="1">\n'
             f'    <animate attributeName="opacity" values="0;1" dur=".8s" '
-            f'begin="{1.15 + k*0.15:.2f}s" fill="freeze"/>\n'
+            f'begin="{1.15 + k*0.15:.2f}s" fill="freeze" '
+            f'calcMode="spline" keySplines="0 .6 .4 1"/>\n'
             f'    <text class="num-{tn}"  x="{x}" y="102">{num}</text>\n'
             f'    <text class="nlab-{tn}" x="{x}" y="122">{label}</text>\n'
             f'  </g>')
@@ -205,7 +261,7 @@ def build(c, tn, series, total, repos, dog_b64):
     n = len(series)
     dv, dk = dog_track(series, peak)
     dog_x0, dog_y0 = dv.split(';')[0].split()
-    hop = "; ".join("0 " + ("-5" if i % 2 else "0") for i in range(23))
+    hop_v, hop_k, hop_s = dog_hop(n)
     stats = [(str(repos), "PUBLIC REPOS", 800),
              (str(LIVE_SITES), "LIVE SITES", 925),
              (str(total), "CONTRIBUTIONS", 1020)]
@@ -226,7 +282,8 @@ def build(c, tn, series, total, repos, dog_b64):
     </pattern>
     <style>
 {font_face()}
-      .name-{tn} {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.8px; filter:drop-shadow(4px 4px 0 {c['name_shadow']}); }}
+      .name-{tn} {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['ink']}; letter-spacing:-1.8px; }}
+      .nsh-{tn}  {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['name_shadow']}; letter-spacing:-1.8px; }}
       .sub-{tn}  {{ font:500 18px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
       .meta-{tn} {{ font:700 12.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent']}; letter-spacing:1.5px; }}
       .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent2']}; letter-spacing:-0.7px; }}
@@ -240,14 +297,20 @@ def build(c, tn, series, total, repos, dog_b64):
 
   <g transform="translate(72,0)">
     <text class="meta-{tn}" x="0" y="48" opacity="1">SF BAY AREA / IRVINE, CA &#183; OPEN TO WORK
-      <animate attributeName="opacity" values="0;1" dur=".7s" begin=".1s" fill="freeze"/>
+      <animate attributeName="opacity" values="0;1" dur=".7s" begin=".1s" fill="freeze"
+               calcMode="spline" keySplines="0 .6 .4 1"/>
     </text>
-    <text class="name-{tn}" x="0" y="104" opacity="1">Weiren Feng
-      <animate attributeName="opacity" values="0;1" dur=".9s" begin=".3s" fill="freeze"/>
-      <animateTransform attributeName="transform" type="translate" values="0 12;0 0" dur=".9s" begin=".3s" fill="freeze"/>
-    </text>
+    <g opacity="1">
+      <animate attributeName="opacity" values="0;1" dur=".9s" begin=".3s" fill="freeze"
+               calcMode="spline" keySplines="0 .6 .4 1"/>
+      <animateTransform attributeName="transform" type="translate" values="0 12;0 0" dur=".9s" begin=".3s"
+                        fill="freeze" calcMode="spline" keySplines="0 .65 .25 1"/>
+      <text class="nsh-{tn}" x="4" y="108" aria-hidden="true">Weiren Feng</text>
+      <text class="name-{tn}" x="0" y="104">Weiren Feng</text>
+    </g>
     <rect x="0" y="126" width="420" height="2" rx="1" fill="url(#rule-{tn})">
-      <animate attributeName="width" values="0;420" dur="1.1s" begin=".8s" fill="freeze"/>
+      <animate attributeName="width" values="0;420" dur="1.1s" begin=".8s" fill="freeze"
+               calcMode="spline" keySplines="0 .7 .2 1"/>
     </rect>
     <g transform="translate(0,162)">
 {subtitles(tn)}
@@ -269,12 +332,13 @@ def build(c, tn, series, total, repos, dog_b64):
   <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; CONTRIBUTION RUN</text>
 
   <g opacity="1" transform="translate({dog_x0},{dog_y0})">
-    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.755;.815;1" dur="{LOOP}s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.755;.815;1" dur="{LOOP}s"
+             repeatCount="indefinite" calcMode="spline" keySplines="0 .6 .4 1;0 0 1 1;.4 0 1 .6;0 0 1 1"/>
     <animateTransform attributeName="transform" type="translate" values="{dv}" keyTimes="{dk}"
                       dur="{LOOP}s" repeatCount="indefinite"/>
     <g>
-      <animateTransform attributeName="transform" type="translate" values="{hop}" dur="{RUN}s"
-                        repeatCount="indefinite" calcMode="spline" keySplines="{';'.join(['.35 0 .45 1']*22)}"/>
+      <animateTransform attributeName="transform" type="translate" values="{hop_v}" keyTimes="{hop_k}"
+                        dur="{LOOP}s" repeatCount="indefinite" calcMode="spline" keySplines="{hop_s}"/>
       <ellipse cx="0" cy="{LIFT-2:.0f}" rx="15" ry="3" fill="{c['shadow']}" opacity=".4"/>
       <circle cx="0" cy="0" r="{DOG_R+6:.1f}" fill="{c['halo']}" opacity=".22"/>
       <circle cx="{-DOG_R-10:.0f}" cy="3" r="3" fill="{c['accent2']}" opacity="0">
