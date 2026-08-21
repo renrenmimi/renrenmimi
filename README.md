@@ -72,12 +72,12 @@ Interactive courses and practice tools, with progress kept in the browser where 
 
 | | |
 |---|---|
-| [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
 | [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then animation, then Java/Python/JS side by side |
 | [**AlgoAlgo**](https://algo-algo.vercel.app) | 13 chapters of algorithms: decision trees, DP tables and binary-search intervals replayed step by step |
 | [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, with exercises that call live public APIs |
 | [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with compiler errors quoted from actual `tsc` output |
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations and review questions in seven stops |
+| [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | a visual introduction to message history, tool calls and the agent loop |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
