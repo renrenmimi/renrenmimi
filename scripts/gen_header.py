@@ -28,8 +28,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 
 # Counted by hand, so they need a nudge when the picture changes:
-# 4 shipped web apps (incl. kovaflooring.com) + 7 course sites + 18 toys + this portfolio.
-LIVE_SITES = 30
+# 4 shipped web apps (incl. kovaflooring.com) + 8 course sites + 18 toys + this portfolio.
+LIVE_SITES = 31
 
 QUERY = """
 query($login:String!) {
