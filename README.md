@@ -6,12 +6,6 @@
 
 <div align="center"><a href="https://renrenmimi.github.io/"><img alt="Open portfolio" src="./assets/dock-portfolio.svg" width="31%"></a>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/fengweiren"><img alt="Open LinkedIn" src="./assets/dock-linkedin.svg" width="31%"></a>&nbsp;&nbsp;<a href="mailto:feng.weir@northeastern.edu"><img alt="Send email" src="./assets/dock-email.svg" width="31%"></a></div>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="./assets/workbench-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/workbench-light.svg">
-  <img alt="Live from the workbench: recent public GitHub activity across selected portfolio projects." src="./assets/workbench-light.svg">
-</picture>
-
 I build web apps end to end, and I turn what I learn into something you can click.
 
 That habit turned into a set of interactive course sites. When I could not find a good

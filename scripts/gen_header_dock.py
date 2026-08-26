@@ -2,7 +2,12 @@
 """Generate three compact, independently clickable profile link buttons."""
 from __future__ import annotations
 
-from gen_workbench import ASSETS, font_faces
+import base64
+import pathlib
+
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+ASSETS = ROOT / "assets"
 
 
 BG = "#0D0B20"
@@ -11,6 +16,22 @@ INK = "#F7F4FF"
 TEAL = "#4FD6C0"
 BLUE = "#6EA8FF"
 YELLOW = "#FFD75E"
+
+
+def font_faces() -> str:
+    rules = []
+    for family, filename, weight in (
+        ("Manrope", "Manrope-500.woff2", 500),
+        ("Manrope", "Manrope-700.woff2", 700),
+        ("Space Grotesk", "SpaceGrotesk-500.woff2", 500),
+        ("Space Grotesk", "SpaceGrotesk-700.woff2", 700),
+    ):
+        encoded = base64.b64encode((ASSETS / filename).read_bytes()).decode()
+        rules.append(
+            f"@font-face{{font-family:'{family}';font-weight:{weight};"
+            f"src:url(data:font/woff2;base64,{encoded}) format('woff2')}}"
+        )
+    return "\n      ".join(rules)
 
 
 def shell(label: str, width: int, background: str, button: str = "") -> str:
