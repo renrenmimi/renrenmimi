@@ -54,7 +54,7 @@ def shell(label: str, width: int, background: str, button: str = "") -> str:
 def portfolio() -> str:
     background = ""
     button = f'''
-      <rect x="2" y="2" width="368" height="64" rx="22" fill="{PANEL}" stroke="{TEAL}" stroke-width="1.5"/>
+      <rect x="2" y="2" width="368" height="64" rx="21" fill="{PANEL}" stroke="{TEAL}" stroke-width="1.5"/>
       <path d="M64 24h22a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3H64a3 3 0 0 1-3-3V27a3 3 0 0 1 3-3z" fill="{TEAL}"/>
       <path d="M69 24v-4h12v4M61 32h28M73 31v3h4v-3" fill="none" stroke="{BG}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="190" y="40" text-anchor="middle" class="button" fill="{INK}">PORTFOLIO</text>
@@ -65,7 +65,7 @@ def portfolio() -> str:
 def linkedin() -> str:
     background = ""
     button = f'''
-      <rect x="2" y="2" width="368" height="64" rx="22" fill="{PANEL}" stroke="{BLUE}" stroke-width="1.5"/>
+      <rect x="2" y="2" width="368" height="64" rx="21" fill="{PANEL}" stroke="{BLUE}" stroke-width="1.5"/>
       <rect x="65" y="24" width="19" height="19" rx="4" fill="{BLUE}"/>
       <text x="74.5" y="38.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="{BG}">in</text>
       <text x="190" y="40" text-anchor="middle" class="button" fill="{INK}">LINKEDIN</text>
@@ -76,7 +76,7 @@ def linkedin() -> str:
 def email() -> str:
     background = ""
     button = f'''
-      <rect x="2" y="2" width="368" height="64" rx="22" fill="{PANEL}" stroke="{YELLOW}" stroke-width="1.5"/>
+      <rect x="2" y="2" width="368" height="64" rx="21" fill="{PANEL}" stroke="{YELLOW}" stroke-width="1.5"/>
       <rect x="61" y="24" width="24" height="18" rx="2" fill="none" stroke="{YELLOW}" stroke-width="2"/>
       <path d="m63 26 10 8 10-8" fill="none" stroke="{YELLOW}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <text x="187" y="40" text-anchor="middle" class="button" fill="{INK}">EMAIL</text>
