@@ -37,7 +37,8 @@ FRAME = '''
 def transform(source: str) -> str:
     head, body = source.split("</defs>", 1)
     body = body.rsplit("</svg>", 1)[0]
-    return f"{head}{EXTRA_DEFS}</defs>\n  <g clip-path=\"url(#headerRound)\">{body}</g>\n{FRAME}</svg>"
+    svg = f"{head}{EXTRA_DEFS}</defs>\n  <g clip-path=\"url(#headerRound)\">{body}</g>\n{FRAME}</svg>"
+    return "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
 
 
 def main() -> None:

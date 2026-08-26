@@ -10,9 +10,9 @@
           .button{font:700 17px 'Space Grotesk',sans-serif;letter-spacing:2.1px}
         </style>
       </defs>
-      
+
       <rect width="372" height="78" fill="url(#scan)"/>
-      
+
       <rect x="2" y="2" width="368" height="64" rx="22" fill="#171431" stroke="#6EA8FF" stroke-width="1.5"/>
       <rect x="65" y="24" width="19" height="19" rx="4" fill="#6EA8FF"/>
       <text x="74.5" y="38.5" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="700" fill="#0D0B20">in</text>

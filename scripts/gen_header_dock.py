@@ -14,7 +14,7 @@ YELLOW = "#FFD75E"
 
 
 def shell(label: str, width: int, background: str, button: str = "") -> str:
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} 78" width="{width}" height="78" role="img" aria-label="{label}">
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} 78" width="{width}" height="78" role="img" aria-label="{label}">
       <title>{label}</title>
       <defs>
         <pattern id="scan" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="1" fill="{INK}" opacity=".018"/></pattern>
@@ -27,6 +27,7 @@ def shell(label: str, width: int, background: str, button: str = "") -> str:
       <rect width="{width}" height="78" fill="url(#scan)"/>
       {button}
     </svg>'''
+    return "\n".join(line.rstrip() for line in svg.splitlines()) + "\n"
 
 
 def portfolio() -> str:

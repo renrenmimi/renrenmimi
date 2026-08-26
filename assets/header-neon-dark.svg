@@ -24,7 +24,7 @@
       .nlab-dark { font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:#969DCE; letter-spacing:1.2px; }
       .axis-dark { font:500 10px 'Manrope',system-ui,-apple-system,sans-serif; fill:#969DCE; letter-spacing:1px; }
     </style>
-  
+
     <clipPath id="headerRound"><rect x="3" y="3" width="1194" height="354" rx="22"/></clipPath>
     <linearGradient id="headerNeon" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1200" y2="0" spreadMethod="pad">
       <stop offset="0" stop-color="#4FD6C0"/>
