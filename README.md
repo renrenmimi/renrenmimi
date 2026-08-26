@@ -1,14 +1,16 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)"  srcset="./assets/header-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="./assets/header-light.svg">
-  <img alt="Weiren Feng — frontend / full-stack engineer, open to new-grad through mid-level roles in the SF Bay Area or Irvine, CA." src="./assets/header-light.svg">
+  <source media="(prefers-color-scheme: dark)"  srcset="./assets/header-neon-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/header-neon-light.svg">
+  <img alt="Weiren Feng — frontend / full-stack engineer, open to new-grad through mid-level roles in the SF Bay Area or Irvine, CA." src="./assets/header-neon-light.svg">
 </picture>
 
-<p align="right">
-  <a href="https://renrenmimi.github.io/"><img alt="Open portfolio" src="./assets/link-portfolio.svg" height="30"></a>
-  <a href="https://www.linkedin.com/in/fengweiren"><img alt="Open LinkedIn" src="./assets/link-linkedin.svg" height="30"></a>
-  <a href="mailto:feng.weir@northeastern.edu"><img alt="Send email" src="./assets/link-email.svg" height="30"></a>
-</p>
+<div align="center"><a href="https://renrenmimi.github.io/"><img alt="Open portfolio" src="./assets/dock-portfolio.svg" width="31%"></a>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/fengweiren"><img alt="Open LinkedIn" src="./assets/dock-linkedin.svg" width="31%"></a>&nbsp;&nbsp;<a href="mailto:feng.weir@northeastern.edu"><img alt="Send email" src="./assets/dock-email.svg" width="31%"></a></div>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)"  srcset="./assets/workbench-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./assets/workbench-light.svg">
+  <img alt="Live from the workbench: recent public GitHub activity across selected portfolio projects." src="./assets/workbench-light.svg">
+</picture>
 
 I build web apps end to end, and I turn what I learn into something you can click.
 
