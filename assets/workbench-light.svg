@@ -46,7 +46,7 @@
     </circle>
     <text x="24" y="12" class="eyebrow" fill="#4FD6C0">LIVE FROM THE WORKBENCH</text>
   </g>
-  <text x="1152" y="46" text-anchor="end" class="label" fill="#7772A3">FETCHED AUG 25 · 10:00 PM PT</text>
+  <text x="1152" y="46" text-anchor="end" class="label" fill="#7772A3">FETCHED AUG 25 · 10:02 PM PT</text>
 
   <g transform="translate(48 70)">
     <rect width="342" height="112" rx="13" fill="#211D43" stroke="#37315F"/>
