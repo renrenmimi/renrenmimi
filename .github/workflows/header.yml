@@ -1,4 +1,4 @@
-name: refresh header
+name: refresh profile visuals
 
 on:
   schedule:
@@ -10,11 +10,49 @@ on:
     branches: [main]
     paths:
       - "scripts/gen_header.py"
+      - "scripts/gen_neon_header.py"
+      - "scripts/gen_header_dock.py"
+      - "scripts/gen_workbench.py"
       - "assets/dog.jpg"
+      - ".github/workflows/header.yml"
+  pull_request:
+    paths:
+      - "README.md"
+      - "scripts/gen_header.py"
+      - "scripts/gen_neon_header.py"
+      - "scripts/gen_header_dock.py"
+      - "scripts/gen_workbench.py"
+      - "assets/**"
       - ".github/workflows/header.yml"
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Validate generators and SVG assets
+        run: |
+          python3 - <<'PY'
+          import pathlib
+          import xml.etree.ElementTree as ET
+
+          scripts = pathlib.Path("scripts")
+          for path in scripts.glob("gen_*.py"):
+              compile(path.read_text(encoding="utf-8"), str(path), "exec")
+
+          expected = (
+              "header-neon-light.svg", "header-neon-dark.svg",
+              "dock-portfolio.svg", "dock-linkedin.svg", "dock-email.svg",
+              "workbench-light.svg", "workbench-dark.svg",
+          )
+          for name in expected:
+              ET.parse(pathlib.Path("assets") / name)
+          PY
+
   refresh:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -23,11 +61,15 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Regenerate header SVGs
+      - name: Regenerate profile SVGs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USER: ${{ github.repository_owner }}
-        run: python3 scripts/gen_header.py
+        run: |
+          python3 scripts/gen_header.py
+          python3 scripts/gen_neon_header.py
+          python3 scripts/gen_workbench.py
+          python3 scripts/gen_header_dock.py
 
       - name: Commit if the graph moved
         run: |
@@ -38,5 +80,5 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets
-          git commit -m "Refresh header with today's contribution graph"
+          git commit -m "Refresh profile visuals from public GitHub activity"
           git push
