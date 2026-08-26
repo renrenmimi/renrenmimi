@@ -57,6 +57,14 @@ price per product per tier and importing stock by CSV.
 
 <sub>`Next.js 15` `Static Export` `Firebase Auth` `Firestore` `Cloudflare`</sub> · [live](https://www.kovaflooring.com)
 
+**[Repo Time Machine](https://repo-time-machine.vercel.app)** · a playable history of a public GitHub repository
+
+Paste a repository URL and watch its default branch grow commit by commit. File trees are rebuilt
+from checkpoints and diffs, with exact and reconstructed states labelled separately. The GitHub
+token stays on the server, and a synthetic 16-commit demo runs without spending GitHub quota.
+
+<sub>`Next.js 16` `TypeScript` `GitHub REST API` `Vitest` `Playwright`</sub> · [live](https://repo-time-machine.vercel.app) · [repo](https://github.com/renrenmimi/RepoTimeMachine)
+
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
 Attach a reward to each task; clear them all and the app throws confetti. Built with SwiftUI and
@@ -79,6 +87,7 @@ Interactive courses and practice tools, with progress kept in the browser where 
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations and review questions in seven stops |
 | [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | a visual introduction to message history, tool calls and the agent loop |
+| [**Bug Museum**](https://bugmuseum.vercel.app) | six anonymized debugging cases: reproduce the bug, compare the fixes and run the regression test that keeps it from returning |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
 <sub>AgentLab's responses are recorded in `lib/scenario.ts`, so it runs without an API key. Each
