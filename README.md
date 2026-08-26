@@ -4,7 +4,7 @@
   <img alt="Weiren Feng — frontend / full-stack engineer, open to new-grad through mid-level roles in the SF Bay Area or Irvine, CA." src="./assets/header-neon-light.svg">
 </picture>
 
-<div align="center"><a href="https://renrenmimi.github.io/"><img alt="Open portfolio" src="./assets/dock-portfolio.svg" width="31%"></a>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/fengweiren"><img alt="Open LinkedIn" src="./assets/dock-linkedin.svg" width="31%"></a>&nbsp;&nbsp;<a href="mailto:feng.weir@northeastern.edu"><img alt="Send email" src="./assets/dock-email.svg" width="31%"></a></div>
+<div align="center"><a href="https://renrenmimi.github.io/"><img alt="Open portfolio" src="./assets/dock-portfolio.svg" width="32.5%"></a>&nbsp;&nbsp;<a href="https://www.linkedin.com/in/fengweiren"><img alt="Open LinkedIn" src="./assets/dock-linkedin.svg" width="32.5%"></a>&nbsp;&nbsp;<a href="mailto:feng.weir@northeastern.edu"><img alt="Send email" src="./assets/dock-email.svg" width="32.5%"></a></div>
 
 I build web apps end to end, and I turn what I learn into something you can click.
 
