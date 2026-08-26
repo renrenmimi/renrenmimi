@@ -24,7 +24,23 @@
       .nlab-dark { font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:#969DCE; letter-spacing:1.2px; }
       .axis-dark { font:500 10px 'Manrope',system-ui,-apple-system,sans-serif; fill:#969DCE; letter-spacing:1px; }
     </style>
-  </defs>
+
+    <clipPath id="headerRound"><rect x="3" y="3" width="1194" height="354" rx="22"/></clipPath>
+    <linearGradient id="headerNeon" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="1200" y2="0" spreadMethod="pad">
+      <stop offset="0" stop-color="#4FD6C0"/>
+      <stop offset=".30" stop-color="#4FD6C0"/>
+      <stop offset=".48" stop-color="#6EA8FF"/>
+      <stop offset=".64" stop-color="#8F7CF6"/>
+      <stop offset=".82" stop-color="#FFD75E"/>
+      <stop offset="1" stop-color="#FFD75E"/>
+      <animateTransform attributeName="gradientTransform" type="translate" values="-180 0;180 0;-180 0" dur="11.5s" repeatCount="indefinite" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
+    </linearGradient>
+    <filter id="headerGlow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+</defs>
+  <g clip-path="url(#headerRound)">
 
   <rect width="1200" height="360" fill="#0D0B20"/>
   <rect width="1200" height="360" fill="url(#scan-dark)"/>
@@ -138,4 +154,11 @@
              clip-path="url(#dogClip-dark)" preserveAspectRatio="xMidYMid slice"/>
     </g>
   </g>
+</g>
+
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="#34305E" stroke-width="4" opacity=".72"/>
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="5" opacity=".3" filter="url(#headerGlow)">
+    <animate attributeName="opacity" values=".24;.40;.24" dur="4.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="1.9"/>
 </svg>
