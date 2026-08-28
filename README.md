@@ -91,6 +91,10 @@ wrong answer in its exercises comes with an explanation of why it is wrong.</sub
 
 ### Games and experiments
 
+**[CyberFan](https://renrenmimi.github.io/CyberFan/)** — four cartoon appliances drawn in
+1940s cel style, with working gears and no audio files: every sound is oscillators and
+filtered noise, and the airflow is aimed at the camera instead of across it.
+
 **[Renren Across Tabs](https://renrenmimi.github.io/renren-across-tabs/)** — open multiple browser
 rooms and send a cartoon Renren from one tab to another. No account, no backend — just browser
 tabs talking.
