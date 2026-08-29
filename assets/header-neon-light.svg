@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1200 360" width="1200" height="360" role="img"
-     aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. 1069 contributions in the last 26 weeks.">
+     aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. 1080 contributions in the last 26 weeks.">
   <title>Weiren Feng — frontend / full-stack engineer</title>
   <desc>My dog running across my real GitHub contribution history, one week per step.</desc>
   <defs>
@@ -93,7 +93,7 @@
   </g>
   <g opacity="1">
     <animate attributeName="opacity" values="0;1" dur=".8s" begin="1.45s" fill="freeze" calcMode="spline" keySplines="0 .6 .4 1"/>
-    <text class="num-light"  x="1020" y="102">1069</text>
+    <text class="num-light"  x="1020" y="102">1080</text>
     <text class="nlab-light" x="1020" y="122">CONTRIBUTIONS</text>
   </g>
 
