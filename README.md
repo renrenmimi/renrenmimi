@@ -29,12 +29,10 @@ transaction, so two people redeeming the same code cannot both succeed.
 
 **[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
 
-Drop a transcript on the page and step through the run: the messages array as it grew, the one
-step that blew up the context, and whether that payload is still being re-sent every turn since.
-Parsing happens entirely in the browser — no upload, no account, no backend that receives
-transcript content. `agenttape check` reads a rule set instead — search before write, a context
-ceiling, no tool called five times in a row — and **exits non-zero when a run breaks one**, so it
-sits in CI and tells you the day your agent's behaviour changed.
+Drop a transcript on the page and step through the run: the messages array as it grew, the step
+that blew up the context, and whether that payload is still being re-sent every turn since.
+Parsing happens in your browser, so nothing is uploaded. `agenttape check` runs the same
+expectations from the command line and exits non-zero when one breaks, so it can sit in CI.
 
 <sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
 
@@ -93,7 +91,7 @@ Interactive courses and practice tools, with progress kept in the browser where 
 | [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with compiler errors quoted from actual `tsc` output |
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations and review questions in seven stops |
 | [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
-| [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array and the loop first, then cost, the context window, tool descriptions, trust, approval and evaluation |
+| [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array grows, and every turn re-sends all of it |
 | [**Bug&nbsp;Museum**](https://bugmuseum.vercel.app) | six anonymized cases: reproduce the failure, compare fixes and run the regression test |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
