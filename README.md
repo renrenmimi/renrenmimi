@@ -27,6 +27,17 @@ transaction, so two people redeeming the same code cannot both succeed.
 
 <sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
 
+**[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
+
+Drop a transcript on the page and step through the run: the messages array as it grew, the one
+step that blew up the context, and whether that payload is still being re-sent every turn since.
+Parsing happens entirely in the browser — no upload, no account, no backend that receives
+transcript content. `agenttape check` reads a rule set instead — search before write, a context
+ceiling, no tool called five times in a row — and **exits non-zero when a run breaks one**, so it
+sits in CI and tells you the day your agent's behaviour changed.
+
+<sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
+
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
 Acoustic and semantic signals combined into one score every two seconds. The reducer never calls
