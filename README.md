@@ -18,6 +18,15 @@ growing in real time. Same for data structures, algorithms, Redis, TypeScript, a
 
 ### Things I've shipped
 
+**[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
+
+Two people can co-manage one pet profile, which is where most of the difficulty is. Account
+deletion writes a TTL tombstone, so a second open tab cannot bring the profile back. Counters
+carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
+transaction, so two people redeeming the same code cannot both succeed.
+
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
+
 **[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
 
 Drop a transcript on the page and step through the run: the messages array as it grew, the one
@@ -28,15 +37,6 @@ ceiling, no tool called five times in a row — and **exits non-zero when a run 
 sits in CI and tells you the day your agent's behaviour changed.
 
 <sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
-
-**[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
-
-Two people can co-manage one pet profile, which is where most of the difficulty is. Account
-deletion writes a TTL tombstone, so a second open tab cannot bring the profile back. Counters
-carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
-transaction, so two people redeeming the same code cannot both succeed.
-
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
