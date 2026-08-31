@@ -94,7 +94,7 @@ DUR, TCYC = 4.4, 13.2
 
 # ── geometry ───────────────────────────────────────────────────────────────
 X0, PITCH, BW = 72.0, 39.5, 28.0
-BASE_Y, MAXH, ACTIVE_BASE, STUB = 336.0, 80.0, 22.0, 5.0
+BASE_Y, MAXH, ACTIVE_BASE, STUB = 328.0, 80.0, 22.0, 5.0
 RUN, LOOP = 9.6, 13.6          # dog crosses in RUN, whole cycle is LOOP
 DOG_R, LIFT = 30.0, 31.0
 K_HOLD, K_OFF = 0.815, 0.885   # ridge stays lit until, then goes dark
@@ -259,7 +259,6 @@ def font_face():
 def build(c, tn, series, total, repos, dog_b64):
     peak = visual_peak(series)
     n = len(series)
-    active_weeks = sum(v > 0 for v in series)
     dv, dk = dog_track(series, peak)
     dog_x0, dog_y0 = dv.split(';')[0].split()
     hop_v, hop_k, hop_s = dog_hop(n)
@@ -287,8 +286,8 @@ def build(c, tn, series, total, repos, dog_b64):
       .nsh-{tn}  {{ font:700 56px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['name_shadow']}; letter-spacing:-1.8px; }}
       .sub-{tn}  {{ font:500 18px 'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif; fill:{c['sub']}; }}
       .meta-{tn} {{ font:700 12.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent']}; letter-spacing:1.5px; }}
-      .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent2']}; letter-spacing:-0.7px; }}
-      .nlab-{tn} {{ font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1.2px; }}
+      .num-{tn}  {{ font:700 30px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['accent2']}; letter-spacing:-0.7px; text-anchor:middle; }}
+      .nlab-{tn} {{ font:500 10.5px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1.2px; text-anchor:middle; }}
       .axis-{tn} {{ font:500 10px 'Manrope',system-ui,-apple-system,sans-serif; fill:{c['faint']}; letter-spacing:1px; }}
     </style>
   </defs>
@@ -329,8 +328,8 @@ def build(c, tn, series, total, repos, dog_b64):
       {bars(c, series, peak)}
   </g>
   <rect x="{X0}" y="{BASE_Y}" width="{(n-1)*PITCH+BW:.0f}" height="1.4" fill="{c['base']}"/>
-  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">{active_weeks} / 26 ACTIVE WEEKS &#183; RELATIVE ACTIVITY</text>
-  <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">TODAY &#183; CONTRIBUTION RUN</text>
+  <text class="axis-{tn}" x="{X0}" y="{BASE_Y+18:.0f}">26 WEEKS ACTIVITY</text>
+  <text class="axis-{tn}" x="{X0+(n-1)*PITCH+BW:.0f}" y="{BASE_Y+18:.0f}" text-anchor="end">CONTRIBUTION RUN</text>
 
   <g opacity="1" transform="translate({dog_x0},{dog_y0})">
     <animate attributeName="opacity" values="0;1;1;0;0" keyTimes="0;.05;.755;.815;1" dur="{LOOP}s"
