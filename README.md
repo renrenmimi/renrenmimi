@@ -93,11 +93,11 @@ Interactive courses and practice tools, with progress kept in the browser where 
 | [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with compiler errors quoted from actual `tsc` output |
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations and review questions in seven stops |
 | [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
-| [**AgentLab**](https://agent-lab-blond.vercel.app) | a visual introduction to message history, tool calls and the agent loop |
+| [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array and the loop first, then cost, the context window, tool descriptions, trust, approval and evaluation |
 | [**Bug&nbsp;Museum**](https://bugmuseum.vercel.app) | six anonymized cases: reproduce the failure, compare fixes and run the regression test |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
-<sub>AgentLab's responses are recorded in `lib/scenario.ts`, so it runs without an API key. Each
+<sub>AgentLab's responses are recorded in `lib/scenarios/`, so it runs without an API key. Each
 wrong answer in its exercises comes with an explanation of why it is wrong.</sub>
 
 ### Games and experiments
