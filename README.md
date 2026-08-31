@@ -18,6 +18,17 @@ growing in real time. Same for data structures, algorithms, Redis, TypeScript, a
 
 ### Things I've shipped
 
+**[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
+
+Drop a transcript on the page and step through the run: the messages array as it grew, the one
+step that blew up the context, and whether that payload is still being re-sent every turn since.
+Parsing happens entirely in the browser — no upload, no account, no backend that receives
+transcript content. `agenttape check` reads a rule set instead — search before write, a context
+ceiling, no tool called five times in a row — and **exits non-zero when a run breaks one**, so it
+sits in CI and tells you the day your agent's behaviour changed.
+
+<sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
+
 **[PetNote](https://petnote.vercel.app)** · pet-centric social app, multi-owner by design
 
 Two people can co-manage one pet profile, which is where most of the difficulty is. Account
