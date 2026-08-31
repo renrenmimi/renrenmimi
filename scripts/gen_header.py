@@ -264,7 +264,7 @@ def build(c, tn, series, total, repos, dog_b64):
     hop_v, hop_k, hop_s = dog_hop(n)
     stats = [(str(repos), "PUBLIC REPOS", 800),
              (str(LIVE_SITES), "LIVE SITES", 925),
-             (str(total), "CONTRIBUTIONS", 1020)]
+             (str(total), "CONTRIBUTIONS", 1050)]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
      viewBox="0 0 1200 360" width="1200" height="360" role="img"
      aria-label="Weiren Feng, frontend and full-stack engineer. Open to new-grad through mid-level roles in the SF Bay Area or Irvine, California. {total} contributions in the last year.">

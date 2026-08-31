@@ -20,17 +20,17 @@ EXTRA_DEFS = '''
       <animateTransform attributeName="gradientTransform" type="translate" values="-180 0;180 0;-180 0" dur="11.5s" repeatCount="indefinite" calcMode="spline" keySplines=".4 0 .2 1;.4 0 .2 1"/>
     </linearGradient>
     <filter id="headerGlow" x="-20%" y="-30%" width="140%" height="160%">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
 '''
 
 FRAME = '''
-  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="#34305E" stroke-width="1.5" opacity=".65"/>
-  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="1.5" opacity=".16" filter="url(#headerGlow)">
-    <animate attributeName="opacity" values=".12;.22;.12" dur="4.8s" repeatCount="indefinite"/>
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="#34305E" stroke-width="4" opacity=".72"/>
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="5" opacity=".3" filter="url(#headerGlow)">
+    <animate attributeName="opacity" values=".24;.40;.24" dur="4.8s" repeatCount="indefinite"/>
   </rect>
-  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="1.5"/>
+  <rect x="3" y="3" width="1194" height="354" rx="22" fill="none" stroke="url(#headerNeon)" stroke-width="1.9"/>
 '''
 
 
