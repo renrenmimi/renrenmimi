@@ -55,7 +55,7 @@ Ten years of visa bulletin history, wait-time estimates, and official regulatory
 The data comes from 130 US visa bulletins and every Canadian Express Entry draw since 2015,
 refreshed by a scheduled job every morning.
 
-<sub>`Next.js 15` `SSR` `Python` `GitHub Actions`</sub> · [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)
+<sub>`Next.js 16` `SSR` `Python` `GitHub Actions`</sub> · [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)
 
 **[KOVA Flooring](https://www.kovaflooring.com)** · brand site and dealer portal, shipped for a client
 
