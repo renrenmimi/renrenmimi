@@ -37,7 +37,7 @@ Compare two runs side by side, or index every session on the machine at once —
 in your browser, so nothing is uploaded. `agenttape check` runs the same expectations from the
 command line and exits non-zero when one breaks, so it can sit in CI.
 
-<sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
+<sub>`Next.js 15` `TypeScript` `Canvas` `File System Access` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
