@@ -31,17 +31,19 @@ transaction, so two people redeeming the same code cannot both succeed.
 
 Drop a transcript on the page and step through the run: the messages array as it grew, the step
 that blew up the context, and whether that payload is still being re-sent every turn since.
-Parsing happens in your browser, so nothing is uploaded. `agenttape check` runs the same
-expectations from the command line and exits non-zero when one breaks, so it can sit in CI.
+Compare two runs side by side, or index every session on the machine at once — all of it parsed
+in your browser, so nothing is uploaded. `agenttape check` runs the same expectations from the
+command line and exits non-zero when one breaks, so it can sit in CI.
 
 <sub>`Next.js 15` `TypeScript` `Canvas` `DevTools Protocol` — 3 dependencies</sub> · [live](https://agenttape.vercel.app) · [repo](https://github.com/renrenmimi/AgentTape)
 
 **[ToneDown](https://tone-down.vercel.app)** · a live tone coach for heated conversations
 
-Acoustic and semantic signals combined into one score every two seconds. The reducer never calls
-`Date.now()`; every transition reads the timestamp off a `TICK` event instead, which is what lets
-the demo replay from a script and keeps its 100+ tests deterministic. Falls back from
-Groq Whisper to Web Speech to raw loudness, so it still works with the network off.
+Acoustic and semantic signals combined into one score every two seconds, and every reminder opens
+into a timeline explaining why it fired. The reducer never calls `Date.now()`; every transition
+reads the timestamp off a `TICK` event instead, which is what lets the demo replay from a script
+and keeps its 163 tests deterministic. Falls back from Groq Whisper to Web Speech to raw
+loudness, so it still works with the network off.
 
 <sub>`React` `TypeScript` `Groq` `Vitest` `Playwright`</sub> · [demo](https://tone-down.vercel.app/demo) · [repo](https://github.com/renrenmimi/ToneDown)
 
@@ -64,9 +66,11 @@ price per product per tier and importing stock by CSV.
 
 **[Repo Time Machine](https://repo-time-machine.vercel.app)** · a playable history of a public GitHub repository
 
-Paste a repository URL and watch its default branch grow commit by commit. File trees are rebuilt
-from checkpoints and diffs, with exact and reconstructed states labelled separately. The GitHub
-token stays on the server, and a synthetic 16-commit demo runs without spending GitHub quota.
+Three views over any public repository: Replay walks the default branch commit by commit, Compare
+puts any two commits or tags side by side, and Insights tracks how size and structure moved. File
+trees are rebuilt from checkpoints and diffs, with exact and reconstructed states labelled
+separately. The GitHub token stays on the server, and a synthetic 16-commit demo runs without
+spending GitHub quota.
 
 <sub>`Next.js 16` `TypeScript` `GitHub REST API` `Vitest` `Playwright`</sub> · [live](https://repo-time-machine.vercel.app) · [repo](https://github.com/renrenmimi/RepoTimeMachine)
 
@@ -87,8 +91,8 @@ Interactive courses and practice tools, with progress kept in the browser where 
 |---|---|
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array grows, and every turn re-sends all of it |
 | [**DrillLab**](https://drill-lab-three.vercel.app) | 80 lessons across five tracks, then 105 recall questions, 148 exercises, 25 coding problems and 7 timed builds, ordered by six guided plans |
-| [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then animation, then Java/Python/JS side by side |
-| [**AlgoAlgo**](https://algo-algo.vercel.app) | 13 chapters of algorithms: decision trees, DP tables and binary-search intervals replayed step by step |
+| [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then an animation you can step or predict, then Java/Python/JS side by side |
+| [**AlgoAlgo**](https://algo-algo.vercel.app) | 13 chapters of algorithms: decision trees, DP tables and binary-search intervals replayed step by step, plus a race that bills each sort in comparisons and moves |
 | [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, against a mock API and request inspector that run in your own browser |
 | [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with the real `tsc` running in a Web Worker and answering your edits |
 | [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations, review questions and a fault simulator in eight stops |
@@ -108,15 +112,23 @@ filtered noise, and the airflow is aimed at the camera instead of across it.
 rooms and send a cartoon Renren from one tab to another. No account, no backend — just browser
 tabs talking.
 
-**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a small platformer starring the dog
-in my avatar, with variable-height jumps, coyote time, and buffered input.
+**[Avatar Dash](https://renrenmimi.github.io/avatar-dash/)** — a six-level platformer across three
+worlds starring the dog in my avatar, with variable-height jumps, coyote time, buffered input, a
+Dog Mode, and a best time and a ghost kept for every level.
 
 Also: a [Dota-flavored snake](https://renrenmimi.github.io/dota-snake/) that calls your
-killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you steer by hovering,
-[tank battles](https://renrenmimi.github.io/Tank/), a
-[fluid sim](https://renrenmimi.github.io/fluid-simulation/), an
-[n-body gravity sandbox](https://renrenmimi.github.io/particle-galaxy/), and a handful of
-cognitive drills. Most are a single HTML file — open it in a browser.
+killstreaks and keeps a record for each of four rank tiers,
+[Gomoku](https://renrenmimi.github.io/Gomoku/) against a negamax opponent with alpha-beta pruning
+and iterative deepening, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you steer by
+hovering, [tank battles](https://renrenmimi.github.io/Tank/), two quick-draw duels for one
+keyboard ([split-screen](https://renrenmimi.github.io/1v1/) and
+[western](https://renrenmimi.github.io/1v1--2/)), an
+[iaido duel](https://renrenmimi.github.io/IAI-SAMURAI-STRIKE/) decided inside a single window, a
+[gravity-collapse survival](https://renrenmimi.github.io/SINGULARITY-Gravity-Collapse/) that
+remembers your best runs, a [fluid sim](https://renrenmimi.github.io/fluid-simulation/), an
+[n-body gravity sandbox](https://renrenmimi.github.io/particle-galaxy/),
+[fireworks](https://renrenmimi.github.io/firework/), and a handful of cognitive drills. Most are a
+single HTML file — open it in a browser.
 
 ---
 
