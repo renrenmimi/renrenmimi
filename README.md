@@ -22,10 +22,12 @@ growing in real time. Same for data structures, algorithms, Redis, TypeScript, a
 
 Two people can co-manage one pet profile, which is where most of the difficulty is. Account
 deletion writes a TTL tombstone, so a second open tab cannot bring the profile back. Counters
-carry a `counted` flag and cannot go below zero. Invite codes are re-validated inside the
-transaction, so two people redeeming the same code cannot both succeed.
+stay correct through a three-state `counted` marker that survives at-least-once and
+out-of-order delivery, rather than by clamping at zero — clamping would hide a miscount
+instead of fixing it. Invite codes are re-validated inside the transaction, so two people
+redeeming the same code cannot both succeed.
 
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 200+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 270+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
 
 **[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
 
