@@ -47,9 +47,9 @@ Groq Whisper to Web Speech to raw loudness, so it still works with the network o
 
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration timeline tracker
 
-Ten years of visa bulletin history, wait-time estimates, and email alerts when a category moves.
-The data comes from 130 US visa bulletins and 424 Canadian Express Entry draws, refreshed by a
-scheduled job every morning.
+Ten years of visa bulletin history, wait-time estimates, and official regulatory news.
+The data comes from 130 US visa bulletins and every Canadian Express Entry draw since 2015,
+refreshed by a scheduled job every morning.
 
 <sub>`Next.js 15` `SSR` `Python` `GitHub Actions`</sub> · [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)
 
@@ -86,12 +86,12 @@ Interactive courses and practice tools, with progress kept in the browser where 
 | | |
 |---|---|
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array grows, and every turn re-sends all of it |
-| [**DrillLab**](https://drill-lab-three.vercel.app) | four practice tracks that gradually remove scaffolding, from review questions to timed builds |
+| [**DrillLab**](https://drill-lab-three.vercel.app) | 80 lessons across five tracks, then 105 recall questions, 148 exercises, 25 coding problems and 7 timed builds, ordered by six guided plans |
 | [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then animation, then Java/Python/JS side by side |
 | [**AlgoAlgo**](https://algo-algo.vercel.app) | 13 chapters of algorithms: decision trees, DP tables and binary-search intervals replayed step by step |
-| [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, with exercises that call live public APIs |
-| [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with compiler errors quoted from actual `tsc` output |
-| [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations and review questions in seven stops |
+| [**APIer**](https://apier-eta.vercel.app) | HTTP → REST → GraphQL, against a mock API and request inspector that run in your own browser |
+| [**TSer**](https://tser.vercel.app) | 12 chapters of TypeScript, with the real `tsc` running in a Web Worker and answering your edits |
+| [**RedisVisual**](https://redis-visual.vercel.app) | Redis data structures, caching patterns, operations, review questions and a fault simulator in eight stops |
 | [**Bug&nbsp;Museum**](https://bugmuseum.vercel.app) | six anonymized cases: reproduce the failure, compare fixes and run the regression test |
 | [**SwiftLab**](https://renrenmimi.github.io/SwiftLab/) | takes iCanDoIt apart and rebuilds it, starting from one line of Hello world |
 
@@ -116,7 +116,7 @@ killstreaks, a [neon Pong](https://renrenmimi.github.io/NEON-HOVER-PONG/) you st
 [tank battles](https://renrenmimi.github.io/Tank/), a
 [fluid sim](https://renrenmimi.github.io/fluid-simulation/), an
 [n-body gravity sandbox](https://renrenmimi.github.io/particle-galaxy/), and a handful of
-cognitive drills. Each is a single HTML file — open it in a browser.
+cognitive drills. Most are a single HTML file — open it in a browser.
 
 ---
 
