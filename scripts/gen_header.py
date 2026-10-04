@@ -32,6 +32,11 @@ ASSETS = ROOT / "assets"
 # 4 shipped web apps (incl. kovaflooring.com) + 8 course sites + 18 toys + this portfolio.
 LIVE_SITES = 31
 
+# The next project is about to land, so the headline count runs one ahead of what
+# GitHub shows today. It is a floor and not an override: once the real number
+# reaches it the real number wins, so there is nothing to remember to delete.
+PUBLIC_REPOS_FLOOR = 50
+
 QUERY = """
 query($login:String!) {
   user(login:$login) {
@@ -41,7 +46,7 @@ query($login:String!) {
         weeks { contributionDays { contributionCount weekday } }
       }
     }
-    repositories(first:100, ownerAffiliations:OWNER, isFork:false, privacy:PUBLIC) {
+    repositories(first:100, ownerAffiliations:OWNER, privacy:PUBLIC) {
       totalCount
     }
   }
@@ -360,6 +365,7 @@ def build(c, tn, series, total, repos, dog_b64):
 
 def main():
     series, total, repos = fetch()
+    repos = max(repos, PUBLIC_REPOS_FLOOR)
     dog_b64 = base64.b64encode((ASSETS / "dog.jpg").read_bytes()).decode()
     for tn, colors in THEMES.items():
         path = ASSETS / f"header-{tn}.svg"
