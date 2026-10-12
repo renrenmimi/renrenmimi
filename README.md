@@ -27,7 +27,7 @@ out-of-order delivery, rather than by clamping at zero — clamping would hide a
 instead of fixing it. Invite codes are re-validated inside the transaction, so two people
 redeeming the same code cannot both succeed.
 
-<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 270+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
+<sub>`React 19` `Firebase` `Cloud Functions` `Tailwind 4` — 690+ commits</sub> · [live](https://petnote.vercel.app) · [repo](https://github.com/renrenmimi/PetNote)
 
 **[AgentTape](https://agenttape.vercel.app)** · replay a Claude Code session that already happened
 
