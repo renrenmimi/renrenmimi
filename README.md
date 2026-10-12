@@ -52,8 +52,8 @@ loudness, so it still works with the network off.
 **[GreenLane](https://greenlane-beryl.vercel.app)** · immigration timeline tracker
 
 Ten years of visa bulletin history, wait-time estimates, and official regulatory news.
-The data comes from 130 US visa bulletins and every Canadian Express Entry draw since 2015,
-refreshed by a scheduled job every morning.
+The data comes from every US visa bulletin since October 2015 and every Canadian Express Entry
+draw since 2015, refreshed by a scheduled job every six hours.
 
 <sub>`Next.js 16` `SSR` `Python` `GitHub Actions`</sub> · [live](https://greenlane-beryl.vercel.app) · [repo](https://github.com/renrenmimi/greenlane)
 
