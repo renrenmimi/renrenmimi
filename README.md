@@ -76,6 +76,16 @@ spending GitHub quota.
 
 <sub>`Next.js 16` `TypeScript` `GitHub REST API` `Vitest` `Playwright`</sub> · [live](https://repo-time-machine.vercel.app) · [repo](https://github.com/renrenmimi/RepoTimeMachine)
 
+**[TaxLot](https://taxlot.vercel.app)** · investment tracking and tax estimates
+
+Track investment lots, explain realized gains, and check wash sales across a household's
+accounts. Import transaction CSVs, reconcile them against brokerage statements, and try a sale
+before making it. A standalone TypeScript engine handles the calculations without depending on
+the UI or the system clock. The bilingual Expo app keeps data in your browser, with versioned
+backups and a single-writer guard so a second tab cannot overwrite your changes.
+
+<sub>`TypeScript` `React Native` `Expo` `IndexedDB` `Jest`</sub> · [live](https://taxlot.vercel.app)
+
 **[iCanDoIt](https://github.com/renrenmimi/iCanDoIt)** · a native macOS day planner
 
 Attach a reward to each task; clear them all and the app throws confetti. Built with SwiftUI and
@@ -91,6 +101,7 @@ Interactive courses and practice tools, with progress kept in the browser where 
 
 | | |
 |---|---|
+| [**BoxArrow**](https://boxarrow.vercel.app) | Bilingual system design through diagrams you can operate: follow requests across clients, servers and databases, then explore the tradeoffs behind the architecture |
 | [**AgentLab**](https://agent-lab-blond.vercel.app) | 14 stops on tool-using agents: the messages array grows, and every turn re-sends all of it |
 | [**DrillLab**](https://drill-lab-three.vercel.app) | 80 lessons across five tracks, then 105 recall questions, 148 exercises, 25 coding problems and 7 timed builds, ordered by six guided plans |
 | [**DataData**](https://data-data.vercel.app) | 14 chapters of data structures: memory diagram first, then an animation you can step or predict, then Java/Python/JS side by side |
